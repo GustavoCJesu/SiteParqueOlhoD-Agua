@@ -1,0 +1,101 @@
+.btnMaps {
+    font-size: 30px;
+    padding: 20px 0;
+    background: linear-gradient(135deg, #14494A, #028F92);
+
+    background-size: 200% 200%;
+    background-position: left;
+    transition: background-position 0.5s ease;
+    width: auto;
+    margin-top: 2rem;
+    border-radius: 5px;
+    text-align: center;
+    width: 200px;
+    color: #fff;
+
+    transition: .5s;
+
+    &:hover {
+        scale: 1.05;
+        background-position: right;
+    }
+}
+
+.bannerImg {
+    width: 1000px;
+    height: 500px;
+}
+
+.txtRefugio {
+    font-weight: 1000;
+    background-clip: text;
+    align-items: flex-end;
+
+    background-image: url('../public/img/refugio.png');
+    background-size: cover;
+    background-position: center 80%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+
+
+    display: inline-block;
+}
+
+.infoAboutUs {
+    padding: 15px 30px;
+}
+
+.aboutHover {
+
+    transition: .5s;
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+.txtActivity {
+    font-size: 30px;
+    padding: 15px;
+    position: absolute;
+
+    color: #fff;
+
+    bottom: 10;
+
+    border-radius: 30px;
+
+    align-self: flex-start;
+}
+
+.imgCard{
+    border-radius: 0 0 10px 0;
+
+    height: 35rem;
+    width: auto;
+}
+
+.txtActivity > p{
+    font-weight: lighter;
+}
+
+.card{
+    box-shadow: -5 -5 10 2 #525252;
+    transition: .5s;
+        &:hover{
+        scale: 1.05;
+        rotate: 1deg;
+        
+    }
+}
+
+.btnSeeMore {
+
+    transition: .5s;
+    &:hover{
+        scale: 1.1;
+    }
+
+}

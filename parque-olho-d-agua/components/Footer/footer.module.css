@@ -1,0 +1,38 @@
+.leftFooter {
+  padding: 0 50px;
+  color: #525252
+}
+
+.imgFooter {
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  width: 800px;
+  height: 400px;
+}
+
+.linkFooter {
+  font-size: 20px;
+  transition: .5s;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.socialIcon {
+  margin: 5px;
+  padding: 5px;
+  transition: 0.5s;
+  border-radius: 100%;
+
+  &:hover {
+    transform: scale(1.1);
+    color: #fff;
+    background-color: #14494A;
+  }
+
+  .textCopyright {
+    font-weight: 300;
+    font-size: 30px;
+  }
+}
+

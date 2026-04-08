@@ -1,0 +1,26 @@
+
+
+.logoImg{
+    height: auto;
+    width: auto;
+}
+
+.menuItem{
+    font-size: 20px;
+    padding: 2rem;
+    align-items: center;
+    transition: .5s;
+    font-weight: 900;
+
+    &:hover{
+        scale: 1.15;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .header{
+        flex-direction: column;
+    }
+
+}
