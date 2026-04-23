@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+.zoom{
+
+    transition: .5s;
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+.aboreto {
+    font-family: 'Aboreto', Arial, sans-serif;
+}
+
+.titlesobreNos {
+    top:4rem;
+    left: 8rem;
+    font-size: 10rem;
+}
+
+
+@media screen and (max-width: 1400px){
+    .titlesobreNos {
+    top:4rem;
+    left: 8rem;
+    font-size: 7rem;
+}
+}
+
+.titleNossaHistoria {
+    font-size: clamp(1.5rem, 4vw, 50px);
+}
+
+.btnEntrarEmContato{
+
+    transition: .5s;
+    position: relative;
+    z-index: 1;
+
+    &::before{
+        content: '';
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        transition: .5s;
+        background: linear-gradient(106deg, #14494A 0%, #028F92 100%);
+        position: absolute;
+        z-index: -1;
+        border-radius: 0 50px 50 0 ;
+    }
+
+    &:hover{
+        color: white;
+        &::before{
+            width: 100%;
+            border-radius: 0 0 0 0 ;
+        }
+    }
+
+}

@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+.titleCarousel{
+    font-family: 'Aboreto', Helvetica, sans-serif;
+    margin-bottom: 40px;
+}
+.btnConfira{
+    position: relative;
+    /* overflow: hidden; */
+    transition: .5s;
+    z-index: 10;
+    font-weight: 700;
+    &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: linear-gradient(106deg, #14494A 0%, #028F92 100%);
+        transition: .5s;
+        border-radius: 5px;
+        z-index: -1;
+    }
+    &:hover{
+        color: white;
+        &::before{
+            width: 100%;
+        }
+    }
+}

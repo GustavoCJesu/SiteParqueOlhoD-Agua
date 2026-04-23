@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.service{
+    font-family: "Roboto";
+    color: #525252;
+    
+}
+
+.txtActivity {
+    font-size: 30px;
+    padding: 15px;
+    position: absolute;
+
+    color: #fff;
+
+    bottom: 10;
+
+    border-radius: 30px;
+
+    align-self: flex-start;
+}
+
+.imgCard{
+    border-radius: 0 0 10px 0;
+
+    height: 35rem;
+    width: auto;
+}
+
+.txtActivity > p{
+    font-weight: lighter;
+}
+
+.card{
+    box-shadow: -5 -5 10 2 #525252;
+    transition: .5s;
+        &:hover{
+        scale: 1.05;
+        rotate: 1deg;
+        
+    }
+}

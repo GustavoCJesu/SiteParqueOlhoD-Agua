@@ -1,0 +1,160 @@
+"use client";
+
+import { useRef, useState } from "react";
+import Image from "next/image";
+
+import style from './Carousel.module.css'
+
+interface CardItem {
+  id: number;
+  tag: string;
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const items: CardItem[] = [
+  {
+    id: 1,
+    tag: "Aventura",
+    title: "Quadriciclo",
+    description:
+      "Aventure-se em trilhas cheias de emoção. Uma experiência divertida para todas as idades.",
+    image: '/img/cards/quadriciclo.webp'
+  },
+  {
+    id: 2,
+    tag: "Natureza",
+    title: "Caiaque",
+    description:
+      "Passeio guiado, seguro e ideal para todas as idades. Relaxe em meio à natureza.",
+    image: '/img/cards/caiaqueServico.webp'
+  },
+  {
+    id: 3,
+    tag: "Lazer",
+    title: "Pedalinho",
+    description:
+      "Leve e relaxante em meio à natureza. Perfeito para famílias e momentos tranquilos.",
+    image: '/img/cards/pedalinhoServico.webp'
+  },
+  {
+    id: 4,
+    tag: "Aquático",
+    title: "Balanço Infinito",
+    description:
+      "Essa é diversão! 138 degraus e 243 metros de pura adrenalina e natureza.",
+    image: '/img/cards/balancoInfinitoServicos.webp'
+  },
+  {
+    id: 5,
+    tag: "Aventura",
+    title: "Passeio a Cavalo",
+    description:
+      "Queda d'água tranquila com piscina natural. 101 degraus e 188 metros de beleza.",
+    image: '/img/cards/cavalo.webp'
+  },
+];
+
+const VISIBLE = 3;
+
+export default function Carousel() {
+  const [current, setCurrent] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const steps = items.length - VISIBLE;
+
+  const go = (n: number) => {
+  const next = Math.max(0, Math.min(n, steps));
+  setCurrent(next);
+
+  const card = trackRef.current?.children[0] as HTMLElement;
+  const cardWidth = card?.offsetWidth ?? 0;
+  const gap = 160; // gap-40 = 160px
+  trackRef.current!.style.transform = `translateX(-${next * (cardWidth + gap)}px)`;
+};
+
+  return (
+    <div className="w-full py-6 font-sans my-10">
+      {/* Header */}
+      <div className="mx-19 my-5">
+        <h1 className={`text-7xl ${style.titleCarousel}`}>
+          <span className="text-[#028F92]">NOSSAS</span> ATIVIDADES
+        </h1>
+      </div>
+      {/* Track */}
+      <div className="overflow-hidden rounded-xl px-20">
+        <div
+          ref={trackRef}
+          className="flex gap-40 transition-transform duration-380 ease-in-out"
+        >
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="flex-none w-[calc((100%-2*160px)/3)] border border-gray-100 rounded-xl overflow-hidden bg-white"
+            >
+              {/* Imagem */}
+              {item.image ? (
+                <Image className="w-full h-130 object-cover" src={item.image} alt={item.title} height={1000} width={1000} />
+              ) : (
+                <div className="w-full h-36 bg-gray-50 flex items-center justify-center text-gray-200">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="4" y="8" width="40" height="32" rx="4" />
+                    <circle cx="17" cy="20" r="4" />
+                    <path d="M4 32 L14 22 L24 30 L32 22 L44 32" />
+                  </svg>
+                </div>
+              )}
+
+              {/* Corpo */}
+              <div className="p-4">
+                <span className="inline-block text-xs font-medium uppercase tracking-wide px-2.5 py-1 rounded-full bg-green-50 text-green-700 mb-2">
+                  {item.tag}
+                </span>
+                <p className="text-sm font-medium text-gray-900 mb-1">{item.title}</p>
+                <p className="text-xs text-gray-500 leading-relaxed mb-4">{item.description}</p>
+                <button className={` ${style.btnConfira} w-full py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-gray-700`}>
+                  Confira
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-1.5 mt-4">
+        {Array.from({ length: steps + 1 }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => go(i)}
+            aria-label={`Ir para página ${i + 1}`}
+            className={`rounded-full transition-all ${i === current
+                ? "w-2 h-2 bg-gray-800 scale-110"
+                : "w-2 h-2 bg-gray-300"
+              }`}
+          />
+        ))}
+      </div>
+      <div className="flex items-center justify-center my-4">
+        <div className="flex gap-2">
+          <button
+            onClick={() => go(current - 1)}
+            disabled={current === 0}
+            aria-label="Anterior"
+            className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-700 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-default transition-colors"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => go(current + 1)}
+            disabled={current === steps}
+            aria-label="Próximo"
+            className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-700 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-default transition-colors"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

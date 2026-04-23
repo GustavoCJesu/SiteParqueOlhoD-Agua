@@ -47,7 +47,7 @@ export default function Home() {
           <p className={`w-150 text-[20px]`}>
             Criado com o objetivo de proteger as fontes naturais e oferecer à população um espaço de lazer e convivência, o parque reúne áreas verdes, trilhas e ambientes tranquilos, proporcionando momentos de descanso, contemplação e educação ambiental.
             <br /><br />
-            Mais do que um ponto turístico, o Parque Olho d’Água representa a valorização dos recursos naturais e o compromisso da cidade com a preservação ambiental.
+            Mais do que um ponto turístico, o Parque Olho D’Água representa a valorização dos recursos naturais e o compromisso da cidade com a preservação ambiental.
           </p>
           <div className={`${style.aboutHover} ${aboreto.className} flex justify-evenly text-center self-start`}>
             <div className={`${style.infoAboutUs} border-t-2 border-b-2 border-l-2 rounded-l`}>
@@ -64,7 +64,7 @@ export default function Home() {
             </div>
           </div>
           <div className={`${style.aboutHover} ${aboreto.className} self-start`}>
-            <Link href='#' className="flex text-xl border-1 px-20 py-5 rounded relative relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[#028F92] before:scale-x-0 before:origin-left before:transition-transform hover:before:scale-x-100 before:transition before:duration-300 hover:text-[#fff] transition duration-500">
+            <Link href='#' className="flex text-xl border px-20 py-5 rounded relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[#028F92] before:scale-x-0 before:origin-left hover:before:scale-x-100 before:transition before:duration-300 hover:text-white transition duration-500">
               <p className="flex items-center z-10">Conheça a historia completa <MoveRight /></p>
             </Link>
           </div>
@@ -73,7 +73,7 @@ export default function Home() {
       <div className="flex mx-auto justify-around my-20">
         <Link href='#'>
           <div className={`relative flex justify-center flex-col ${style.card}`}>
-            <Image className={`${style.imgCard}`} src='/img/cards/quadriciclo.webp' alt='' width={300} height={400} />
+            <Image className={`${style.imgCard}`} src='/img/cards/quadriciclo.png' alt='' width={300} height={400} />
             <div className={`${style.txtActivity}`}>
               <h2 className="text-[30px]">Quadriciclo</h2>
               <p className="text-[12px]">Aventure-se em trilhas cheias de emoção com nosso passeio de quadriciclo. Uma experiência divertida para todas as idades.</p>

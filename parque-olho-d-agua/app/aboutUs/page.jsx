@@ -1,75 +1,118 @@
+import Image from "next/image";
 
-import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from "flowbite-react";
+import style from './aboutUs.module.css'
 
 export default function Component() {
   return (
-    <Accordion>
-      <AccordionPanel>
-        <AccordionTitle>What is Flowbite?</AccordionTitle>
-        <AccordionContent>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">
-            Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons,
-            dropdowns, modals, navbars, and more.
+    <section>
+      <div className="h-dvh w-full">
+        <div className="relative">
+          <Image className="w-full p-20" src='/img/hero/heroSobreNos.svg' alt='Banner da pagina Sobre Nós' width={1000} height={1000} />
+          <h1 className={`absolute text-[100px] ${style.titlesobreNos}`}>
+            SOBRE<span className="text-[#028F92]"> NÓS</span>
+          </h1>
+        </div>
+      </div>
+      <div className="flex justify-center gap-30 px-10">
+        <div className="">
+          <Image className="h-175 w-180 object-cover rounded-xl" src='/img/cachoeira/olhodagua.webp' alt='Cachoeira olho d&apos;agua' width={1000} height={1000} />
+        </div>
+        <div className="flex flex-col bg-[#EDE7DC] justify-center gap-5 p-10 rounded-xl w-180">
+          <h3 className={`text-[#14494A]`}>
+            NOSSA HISTORIA
+          </h3>
+          <h1 className={`${style.titleNossaHistoria}  ${style.aboreto}`}>
+            Nascemos do amor<br />
+            pela natureza
+          </h1>
+          <p className="text-xl w-140">
+            O Parque Olho d&apos;Água nasceu do desejo de valorizar as belezas naturais de Andradas e criar um espaço onde natureza, lazer e tranquilidade se encontram. Localizado em uma área rica em nascentes e cercada por vegetação preservada, o parque foi pensado para oferecer uma experiência autêntica de contato com o meio ambiente.
           </p>
-          <p className="text-gray-500 dark:text-gray-400">
-            Check out this guide to learn how to&nbsp;
-            <a
-              href="https://flowbite.com/docs/getting-started/introduction/"
-              className="text-cyan-600 hover:underline dark:text-cyan-500"
-            >
-              get started&nbsp;
-            </a>
-            and start developing websites even faster with components on top of Tailwind CSS.
+        </div>
+      </div>
+
+      <div className="flex justify-center p-20">
+        <div className="flex flex-col">
+          <h1 className={`${style.aboreto} text-7xl my-10`}>
+            Nossos <span className="text-[#028F92]">Valores</span>
+          </h1>
+          <div className="flex justify-around gap-30 w-full">
+            <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
+              <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
+                Sustentabilidade
+                <Image src='/img/icon/sobreNos/icoSustentabilidade.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+              </h4>
+              <p className="text-xl w-70">
+                Preservamos cada metro do parque para as futuras gerações.
+              </p>
+            </div>
+            <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
+              <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
+                Família
+                <Image src='/img/icon/sobreNos/icoFamilia.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+              </h4>
+              <p className="text-xl w-70">
+                Experiências pensadas para todas as idades, do infantil ao sênior.
+              </p>
+            </div>
+            <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
+              <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
+                Família
+                <Image className="mx-1" src='/img/icon/sobreNos/icoAventura.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+              </h4>
+              <p className="text-xl w-70">
+                Atividades seguras que conectam as pessoas à natureza.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={`w-full h-120 flex justify-around bg-[linear-gradient(106deg,#14494A_0%,#028F92_100%)] items-center ${style.aboreto}`}>
+        <div className="text-center">
+          <h2 className={`text-white text-8xl`}>
+            14+
+          </h2>
+          <p className="text-white text-3xl">
+            Experiencias
           </p>
-        </AccordionContent>
-      </AccordionPanel>
-      <AccordionPanel className="bg-blue-500">
-        <AccordionTitle>Is there a Figma file available?</AccordionTitle>
-        <AccordionContent>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">
-            Flowbite is first conceptualized and designed using the Figma software so everything you see in the library
-            has a design equivalent in our Figma file.
+        </div>
+        <div className="text-center">
+          <h2 className={`text-white text-8xl`}>
+            3
+          </h2>
+          <p className="text-white text-3xl">
+            Cachoeiras
           </p>
-          <p className="text-gray-500 dark:text-gray-400">
-            Check out the
-            <a href="https://flowbite.com/figma/" className="text-cyan-600 hover:underline dark:text-cyan-500">
-              Figma design system
-            </a>
-            based on the utility classes from Tailwind CSS and components from Flowbite.
+        </div>
+        <div className="text-center">
+          <h2 className={`text-white text-8xl`}>
+            50k+
+          </h2>
+          <p className="text-white text-3xl">
+            Visitantes/Ano
           </p>
-        </AccordionContent>
-      </AccordionPanel>
-      <AccordionPanel>
-        <AccordionTitle>What are the differences between Flowbite and Tailwind UI?</AccordionTitle>
-        <AccordionContent>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">
-            The main difference is that the core components from Flowbite are open source under the MIT license, whereas
-            Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone
-            components, whereas Tailwind UI offers sections of pages.
+        </div>
+        <div className="text-center">
+          <h2 className={`text-white text-8xl`}>
+            100%
+          </h2>
+          <p className="text-white text-3xl">
+            Natural
           </p>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">
-            However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no
-            technical reason stopping you from using the best of two worlds.
-          </p>
-          <p className="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-          <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
-            <li>
-              <a href="https://flowbite.com/pro/" className="text-cyan-600 hover:underline dark:text-cyan-500">
-                Flowbite Pro
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://tailwindui.com/"
-                rel="nofollow"
-                className="text-cyan-600 hover:underline dark:text-cyan-500"
-              >
-                Tailwind UI
-              </a>
-            </li>
-          </ul>
-        </AccordionContent>
-      </AccordionPanel>
-    </Accordion>
+        </div>
+      </div>
+      <div className="flex flex-col items-center py-20">
+        <h1 className={`${style.aboreto} text-center text-8xl`}>
+          Venha nos <span className="text-[#028F92]">visitar</span>!!
+        </h1>
+        <p className="text-2xl text-center my-10">
+          Agende sua visita e venha viver essa experiência única em contato com a natureza.
+        </p>
+        <a href="#" className={`${style.btnEntrarEmContato} text-center border-2 border-[#b6b6b6] py-5 px-20 rounded`}>
+          ENTRE EM CONTATO
+        </a>
+      </div>
+
+    </section>
   );
 }
