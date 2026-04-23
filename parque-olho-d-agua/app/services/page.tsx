@@ -23,25 +23,25 @@ export default function Servico() {
             </div>
             <div className='flex justify-around flex-wrap'>
                 <div className='flex flex-col justify-center items-center'>
-                    <Image unoptimized src='/img/icon/GarfoFaca.svg' alt='Garoto' width={80} height={80} />
+                    <Image unoptimized src='/img/Icon/GarfoFaca.svg' alt='Garoto' width={80} height={80} />
                     <p className='text-2xl'>
                         R$49,90 à vontade
                     </p>
                 </div>
                 <div className='flex flex-col justify-center items-center'>
-                    <Image unoptimized src='/img/icon/Crianca.svg' alt='Garfo e Faca' width={90} height={80} />
+                    <Image unoptimized src='/img/Icon/Crianca.svg' alt='Garfo e Faca' width={90} height={80} />
                     <p className='text-2xl'>
                         Até 10 anos: Meia
                     </p>
                 </div>
                 <div className='flex flex-col justify-center items-center'>
-                    <Image unoptimized src='/img/icon/Moeda.svg' alt='Garoto' width={80} height={80} />
+                    <Image unoptimized src='/img/Icon/Moeda.svg' alt='Garoto' width={80} height={80} />
                     <p className='text-2xl'>
                         Até 6 anos: Não paga
                     </p>
                 </div>
                 <div className='flex flex-col justify-center items-center'>
-                    <Image unoptimized src='/img/icon/chapeu.svg' alt='Garoto' width={80} height={80} />
+                    <Image unoptimized src='/img/Icon/chapeu.svg' alt='Garoto' width={80} height={80} />
                     <p className='text-2xl'>
                         Self-Service Completo
                     </p>

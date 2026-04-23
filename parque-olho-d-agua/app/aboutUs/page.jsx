@@ -40,7 +40,7 @@ export default function Component() {
             <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
               <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
                 Sustentabilidade
-                <Image src='/img/icon/sobreNos/icoSustentabilidade.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+                <Image src='/img/Icon/sobreNos/icoSustentabilidade.svg' alt='Icone de sustentabilidade' width={40} height={40} />
               </h4>
               <p className="text-xl w-70">
                 Preservamos cada metro do parque para as futuras gerações.
@@ -49,7 +49,7 @@ export default function Component() {
             <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
               <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
                 Família
-                <Image src='/img/icon/sobreNos/icoFamilia.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+                <Image src='/img/Icon/sobreNos/icoFamilia.svg' alt='Icone de sustentabilidade' width={40} height={40} />
               </h4>
               <p className="text-xl w-70">
                 Experiências pensadas para todas as idades, do infantil ao sênior.
@@ -58,7 +58,7 @@ export default function Component() {
             <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
               <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
                 Família
-                <Image className="mx-1" src='/img/icon/sobreNos/icoAventura.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+                <Image className="mx-1" src='/img/Icon/sobreNos/icoAventura.svg' alt='Icone de sustentabilidade' width={40} height={40} />
               </h4>
               <p className="text-xl w-70">
                 Atividades seguras que conectam as pessoas à natureza.
