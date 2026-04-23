@@ -14,7 +14,7 @@ interface CardItem {
 }
 
 const items: CardItem[] = [
-  {
+{
     id: 1,
     tag: "Aventura",
     title: "Quadriciclo",
@@ -40,7 +40,7 @@ const items: CardItem[] = [
   },
   {
     id: 4,
-    tag: "Aquático",
+    tag: "Aventura",
     title: "Balanço Infinito",
     description:
       "Essa é diversão! 138 degraus e 243 metros de pura adrenalina e natureza.",
@@ -48,10 +48,10 @@ const items: CardItem[] = [
   },
   {
     id: 5,
-    tag: "Aventura",
+    tag: "Natureza",
     title: "Passeio a Cavalo",
     description:
-      "Queda d'água tranquila com piscina natural. 101 degraus e 188 metros de beleza.",
+      "Explore trilhas e paisagens deslumbrantes a cavalo. Ideal para toda a família.",
     image: '/img/cards/cavalo.webp'
   },
 ];
