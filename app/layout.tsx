@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 const roboto = Roboto({
-    subsets:['latin'],
-    weight: ["300", "400", "700", "900"],
+  subsets: ['latin'],
+  weight: ["300", "400", "700", "900"],
 })
 
 export const metadata: Metadata = {
@@ -35,14 +35,14 @@ export default function RootLayout({
   return (
     <html
       lang="pt-br"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} w-full antialiased`}
     >
-      <body className={`min-h-full flex flex-col ${roboto.className}`}>
+      <body className={`${roboto.className} w-full min-h-screen`}>
         <Header />
         {children}
         <Formulario />
         <Footer />
-        </body>
+      </body>
     </html>
   );
 }

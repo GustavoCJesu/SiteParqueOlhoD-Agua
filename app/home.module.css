@@ -21,10 +21,6 @@
     }
 }
 
-.bannerImg {
-    width: 1000px;
-    height: 500px;
-}
 
 .txtRefugio {
     font-weight: 1000;
@@ -37,7 +33,7 @@
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: 40px;
+    letter-spacing: 10px;
 
 
 

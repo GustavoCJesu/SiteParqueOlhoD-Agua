@@ -1,0 +1,6 @@
+.heroContactUs{
+    height: calc(100vh - 158px);
+}
+.heroContactUs > h1{
+    font-weight: 700;
+}

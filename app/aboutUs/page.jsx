@@ -5,30 +5,47 @@ import style from './aboutUs.module.css'
 export default function Component() {
   return (
     <section>
-      <div className="h-dvh w-full">
+      <div className="w-full">
         <div className="relative">
-          <Image className="w-full p-20" src='/img/hero/heroSobreNos.svg' alt='Banner da pagina Sobre Nós' width={1000} height={1000} />
-          <h1 className={`absolute text-[100px] ${style.titlesobreNos}`}>
+          <Image
+            className="w-full object-contain"
+            src='/img/hero/heroSobreNos.svg'
+            alt='Banner da pagina Sobre Nós'
+            width={1000}
+            height={1000}
+          />
+          <h1 className={`absolute top-1 left-4 sm:left-8 md:top-1 md:left-9 lg:top-2 lg:left-8 text-3xl sm:text-6xl md:text-7xl lg:text-[6rem] whitespace-nowrap ${style.titlesobreNos}`}>
             SOBRE<span className="text-[#028F92]"> NÓS</span>
           </h1>
         </div>
       </div>
-      <div className="flex justify-center gap-30 px-10">
-        <div className="">
-          <Image className="h-175 w-180 object-cover rounded-xl" src='/img/cachoeira/olhodagua.webp' alt='Cachoeira olho d&apos;agua' width={1000} height={1000} />
+      <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 lg:gap-30 px-4 sm:px-8 md:px-10 py-10">
+
+        {/* Imagem */}
+        <div className="w-full md:w-auto">
+          <Image
+            className="w-full h-64 sm:h-96 md:h-[500px] lg:h-175 md:w-auto lg:w-180 object-cover rounded-xl"
+            src='/img/cachoeira/olhodagua.webp'
+            alt="Cachoeira olho d'água"
+            width={1000}
+            height={1000}
+          />
         </div>
-        <div className="flex flex-col bg-[#EDE7DC] justify-center gap-5 p-10 rounded-xl w-180">
-          <h3 className={`text-[#14494A]`}>
+
+        {/* Card de texto */}
+        <div className="flex flex-col bg-[#EDE7DC] justify-center gap-4 md:gap-5 p-6 sm:p-8 md:p-10 rounded-xl w-full md:w-[450px] lg:w-180">
+          <h3 className="text-[#14494A] text-sm md:text-base">
             NOSSA HISTORIA
           </h3>
-          <h1 className={`${style.titleNossaHistoria}  ${style.aboreto}`}>
+          <h1 className={`${style.titleNossaHistoria} ${style.aboreto}`}>
             Nascemos do amor<br />
             pela natureza
           </h1>
-          <p className="text-xl w-140">
+          <p className="text-base md:text-lg lg:text-xl w-full lg:w-140">
             O Parque Olho d&apos;Água nasceu do desejo de valorizar as belezas naturais de Andradas e criar um espaço onde natureza, lazer e tranquilidade se encontram. Localizado em uma área rica em nascentes e cercada por vegetação preservada, o parque foi pensado para oferecer uma experiência autêntica de contato com o meio ambiente.
           </p>
         </div>
+
       </div>
 
       <div className="flex justify-center p-20">
