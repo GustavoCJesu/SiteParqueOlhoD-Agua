@@ -7,7 +7,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className='p-5 w-full'>
+    <header className='p-5 w-full text-black'>
 
 
       <ul className='hidden md:flex justify-around items-center w-full text-xl'>
