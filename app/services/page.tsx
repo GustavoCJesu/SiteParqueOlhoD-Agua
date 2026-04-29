@@ -52,70 +52,70 @@ export default function Servico() {
             <div>
                 <Carousel />
             </div>
-            <div className='w-full flex flex-col md:flex-row justify-center gap-4 md:gap-6 lg:gap-10 px-4 md:px-0'>
+            <div className='w-full flex flex-col md:flex-row justify-center gap-4 md:gap-6 lg:gap-10 px-4 md:px-8 lg:px-16'>
 
-                {/* Card grande — esquerda no desktop, primeiro no mobile */}
-                <div className='w-full md:w-1/2 md:flex md:justify-end'>
-                    <div className='w-full md:w-auto relative'>
-                        <Image
-                            className='w-full h-64 sm:h-80 md:h-125 lg:h-162.5 rounded-xl brightness-65 object-cover'
-                            src='/img/cachoeira/olhodagua.webp'
-                            alt='Cachoeira Olho D&apos;água'
-                        height={5000}
-                        width={5000}
+  {/* Card grande — esquerda */}
+  <div className='w-full md:w-1/2'>
+    <div className='w-full relative'>
+      <Image
+        className='w-full h-64 sm:h-80 md:h-125 lg:h-162.5 rounded-xl brightness-65 object-cover'
+        src='/img/cachoeira/olhodagua.webp'
+        alt="Cachoeira Olho D'água"
+        height={5000}
+        width={5000}
       />
-                        <div className='absolute bottom-6 md:bottom-10 lg:bottom-20 left-4 md:left-6 lg:left-10 text-white w-3/4 md:w-72 lg:w-100'>
-                            <h2 className='text-2xl md:text-3xl lg:text-4xl'>
-                                Olho D&apos;agua
-                            </h2>
-                            <p className='text-sm md:text-base mt-1'>
-                                Queda d&apos;água tranquila com piscina natural. 101 degraus, 188 metros.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+      <div className='absolute bottom-6 md:bottom-10 lg:bottom-20 left-4 md:left-6 lg:left-10 text-white w-3/4'>
+        <h2 className='text-2xl md:text-3xl lg:text-4xl'>
+          Olho D&apos;agua
+        </h2>
+        <p className='text-sm md:text-base mt-1'>
+          Queda d&apos;água tranquila com piscina natural. 101 degraus, 188 metros.
+        </p>
+      </div>
+    </div>
+  </div>
 
-                {/* Coluna com 2 cards — direita no desktop, abaixo no mobile */}
-                <div className='w-full md:w-1/2 flex flex-col gap-4 md:gap-6 lg:gap-10'>
+  {/* Coluna com 2 cards — direita */}
+  <div className='w-full md:w-1/2 flex flex-col gap-4 md:gap-6 lg:gap-10'>
 
-                    <div className='relative'>
-                        <Image
-                            className='w-full h-44 sm:h-56 md:h-61.25 lg:h-77.5 rounded-xl object-cover brightness-65'
-                            src='/img/cachoeira/pocofundo.webp'
-                            alt='Cachoeira Poço Fundo'
-                            height={5000}
-                            width={5000}
-                        />
-                        <div className='absolute bottom-4 md:bottom-6 lg:bottom-20 left-4 md:left-6 lg:left-10 text-white w-3/4 md:w-72 lg:w-100'>
-                            <h2 className='text-2xl md:text-3xl lg:text-4xl'>
-                                Olho D&apos;agua
-                            </h2>
-                            <p className='text-sm md:text-base mt-1'>
-                                Queda d&apos;água tranquila com piscina natural. 101 degraus, 188 metros.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className='relative'>
-                        <Image
-                            className='w-full h-44 sm:h-56 md:h-61.25 lg:h-77.5 rounded-xl object-cover brightness-65'
-                            src='/img/cachoeira/olhodagua.webp'
-                            alt='Cachoeira Olho D &apos;água'
-                        height={5000}
-                        width={5000}
+    <div className='relative'>
+      <Image
+        className='w-full h-44 sm:h-56 md:h-61.25 lg:h-77.5 rounded-xl object-cover brightness-65'
+        src='/img/cachoeira/pocofundo.webp'
+        alt='Cachoeira Poço Fundo'
+        height={5000}
+        width={5000}
       />
-                        <div className='absolute bottom-4 md:bottom-6 lg:bottom-20 left-4 md:left-6 lg:left-10 text-white w-3/4 md:w-72 lg:w-100'>
-                            <h2 className='text-2xl md:text-3xl lg:text-4xl'>
-                                Olho D&apos;agua
-                            </h2>
-                            <p className='text-sm md:text-base mt-1'>
-                                Queda d&apos;água tranquila com piscina natural. 101 degraus, 188 metros.
-                            </p>
-                        </div>
-                    </div>
+      <div className='absolute bottom-4 md:bottom-6 lg:bottom-20 left-4 md:left-6 lg:left-10 text-white w-3/4'>
+        <h2 className='text-2xl md:text-3xl lg:text-4xl'>
+          Poço Fundo
+        </h2>
+        <p className='text-sm md:text-base mt-1'>
+          Queda d&apos;água tranquila com piscina natural. 101 degraus, 188 metros.
+        </p>
+      </div>
+    </div>
 
-                </div>
-            </div>
+    <div className='relative'>
+      <Image
+        className='w-full h-44 sm:h-56 md:h-61.25 lg:h-77.5 rounded-xl object-cover brightness-65'
+        src='/img/cachoeira/olhodagua.webp'
+        alt="Cachoeira Olho D'água"
+        height={5000}
+        width={5000}
+      />
+      <div className='absolute bottom-4 md:bottom-6 lg:bottom-20 left-4 md:left-6 lg:left-10 text-white w-3/4'>
+        <h2 className='text-2xl md:text-3xl lg:text-4xl'>
+          Olho D&apos;agua
+        </h2>
+        <p className='text-sm md:text-base mt-1'>
+          Queda d&apos;água tranquila com piscina natural. 101 degraus, 188 metros.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
         </section>
     )
 }
