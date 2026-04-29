@@ -1,16 +1,14 @@
 .btnMaps {
-    font-size: 30px;
-    padding: 20px 0;
+    padding: 1rem 2rem;
     background: linear-gradient(135deg, #14494A, #028F92);
 
     background-size: 200% 200%;
     background-position: left;
     transition: background-position 0.5s ease;
     width: auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-radius: 5px;
     text-align: center;
-    width: 200px;
     color: #fff;
 
     transition: .5s;
@@ -69,9 +67,6 @@
 
 .imgCard{
     border-radius: 0 0 10px 0;
-
-    height: 35rem;
-    width: auto;
 }
 
 .txtActivity > p{
@@ -79,8 +74,10 @@
 }
 
 .card{
-    box-shadow: -5 -5 10 2 #525252;
+    box-shadow: -2 -2 5 2 #979797;
+    border-radius: 0 0 10 0;
     transition: .5s;
+    
         &:hover{
         scale: 1.05;
         rotate: 1deg;

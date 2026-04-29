@@ -92,6 +92,8 @@ export default function Carousel() {
       });
     };
 
+    handleResize()
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

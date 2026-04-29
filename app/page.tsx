@@ -25,10 +25,10 @@ export default function Home() {
           <h1 className={`text-3xl md:text-5xl ${aboreto.className} text-left`}>
             Seu refúgio natural em <br />Andradas.
           </h1>
-          <p className='w-full md:w-160 text-lg md:text-2xl text-left'>
+          <p className='w-full md:w-full text-lg md:text-2xl text-left'>
             Um espaço preparado para você desacelerar, se reconectar e viver momentos especiais em meio à natureza de Andradas.
           </p>
-          <a className={`${style.btnMaps} self-start`}>Como Chegar</a>
+          <a className={`${style.btnMaps} md:text-2xl self-start text-2`}>Como Chegar</a>
           <p className='text-lg md:text-2xl mt-1 md:mt-3'>
             Entrada <strong className='text-green-800'>Gratuita</strong>
           </p>
@@ -37,7 +37,7 @@ export default function Home() {
         {/* Imagem — oculta no mobile ou reduzida */}
         <div className='w-full md:w-1/2 flex justify-center md:justify-end mt-6 md:mt-0'>
           <Image
-            className={`${style.bannerImg} self-end w-full md:w-auto h-full`}
+            className={`${style.bannerImg} hidden self-end w-full md:w-auto h-full`}
             src='/img/BannerHome.png'
             alt='Imagem de uma cachoeira do parque'
             width={900}
@@ -108,9 +108,9 @@ export default function Home() {
       </div>
       <div className="flex flex-col sm:flex-row flex-wrap mx-auto justify-around gap-8 my-10 md:my-20 px-4">
 
-        <Link href='#'>
-          <div className={`relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
-            <Image className={`${style.imgCard} w-full sm:w-75`} src='/img/cards/quadriciclo.png' alt='' width={300} height={400} />
+        <Link href='#' className="h-110">
+          <div className={`h-full relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
+            <Image className={`${style.imgCard} w-full sm:w-75 h-full`} src='/img/cards/quadriciclo.png' alt='' width={300} height={400} />
             <div className={`${style.txtActivity}`}>
               <h2 className="text-xl md:text-[30px]">Quadriciclo</h2>
               <p className="text-xs md:text-[12px]">Aventure-se em trilhas cheias de emoção com nosso passeio de quadriciclo. Uma experiência divertida para todas as idades.</p>
@@ -118,9 +118,9 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href='#'>
-          <div className={`relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
-            <Image className={`${style.imgCard} w-full sm:w-75`} src='/img/cards/caiaque.webp' alt='' width={300} height={400} />
+        <Link href='#' className="h-110">
+          <div className={`h-full relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
+            <Image className={`${style.imgCard} w-full sm:w-75 h-full`} src='/img/cards/caiaque.webp' alt='' width={300} height={400} />
             <div className={`${style.txtActivity}`}>
               <h2 className="text-xl md:text-[30px]">Caiaque</h2>
               <p className="text-xs md:text-[12px]">Passeio de caiaque guiado, seguro e ideal para todas as idades. Uma experiência leve para aproveitar a natureza e relaxar durante sua visita.</p>
@@ -128,9 +128,9 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href='#'>
-          <div className={`relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
-            <Image className={`${style.imgCard} w-full sm:w-75`} src='/img/cards/pedalinho.webp' alt='' width={300} height={400} />
+        <Link href='#' className="h-110">
+          <div className={`h-full relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
+            <Image className={`${style.imgCard} w-full sm:w-75 h-full`} src='/img/cards/pedalinho.webp' alt='' width={300} height={400} />
             <div className={`${style.txtActivity}`}>
               <h2 className="text-xl md:text-[30px]">Pedalinho</h2>
               <p className="text-xs md:text-[12px]">Passeio de pedalinho divertido e seguro, perfeito para todas as idades. Ideal para curtir momentos leves e relaxantes em meio à natureza.</p>

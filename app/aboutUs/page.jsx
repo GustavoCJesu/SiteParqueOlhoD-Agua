@@ -24,7 +24,7 @@ export default function Component() {
         {/* Imagem */}
         <div className="w-full md:w-auto">
           <Image
-            className="w-full h-64 sm:h-96 md:h-[500px] lg:h-175 md:w-auto lg:w-180 object-cover rounded-xl"
+            className="w-full h-64 sm:h-96 md:h-125 lg:h-175 md:w-auto lg:w-180 object-cover rounded-xl"
             src='/img/cachoeira/olhodagua.webp'
             alt="Cachoeira olho d'água"
             width={1000}
@@ -33,7 +33,7 @@ export default function Component() {
         </div>
 
         {/* Card de texto */}
-        <div className="flex flex-col bg-[#EDE7DC] justify-center gap-4 md:gap-5 p-6 sm:p-8 md:p-10 rounded-xl w-full md:w-[450px] lg:w-180">
+        <div className="flex flex-col bg-[#EDE7DC] justify-center gap-4 md:gap-5 p-6 sm:p-8 md:p-10 rounded-xl w-full md:w-112.5 lg:w-180">
           <h3 className="text-[#14494A] text-sm md:text-base">
             NOSSA HISTORIA
           </h3>
@@ -48,75 +48,88 @@ export default function Component() {
 
       </div>
 
-      <div className="flex justify-center p-20">
-        <div className="flex flex-col">
-          <h1 className={`${style.aboreto} text-7xl my-10`}>
+      <div className="flex justify-center px-4 sm:px-10 md:px-16 lg:p-20 py-10">
+        <div className="flex flex-col w-full">
+          <h1 className={`${style.aboreto} text-4xl sm:text-5xl md:text-6xl lg:text-7xl my-6 md:my-10`}>
             Nossos <span className="text-[#028F92]">Valores</span>
           </h1>
-          <div className="flex justify-around gap-30 w-full">
-            <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
-              <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
+
+          <div className="flex flex-col sm:flex-row flex-wrap justify-around gap-6 md:gap-10 lg:gap-16 w-full">
+
+            {/* Sustentabilidade */}
+            <div className={`border-2 border-[#b6b6b6] p-6 md:p-8 lg:pl-10 lg:pr-20 lg:py-10 rounded-xl flex flex-col items-start w-full sm:w-[45%] lg:w-[30%] ${style.zoom}`}>
+              <h4 className="flex text-xl md:text-2xl lg:text-3xl items-center gap-2 mb-4 md:mb-5 text-[#49745B]">
                 Sustentabilidade
-                <Image src='/img/Icon/sobreNos/icoSustentabilidade.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+                <Image src='/img/Icon/sobreNos/icoSustentabilidade.svg' alt='Icone de sustentabilidade' width={40} height={40} className="w-7 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10" />
               </h4>
-              <p className="text-xl w-70">
+              <p className="text-base md:text-lg lg:text-xl w-full">
                 Preservamos cada metro do parque para as futuras gerações.
               </p>
             </div>
-            <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
-              <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
+
+            {/* Família */}
+            <div className={`border-2 border-[#b6b6b6] p-6 md:p-8 lg:pl-10 lg:pr-20 lg:py-10 rounded-xl flex flex-col items-start w-full sm:w-[45%] lg:w-[30%] ${style.zoom}`}>
+              <h4 className="flex text-xl md:text-2xl lg:text-3xl items-center gap-2 mb-4 md:mb-5 text-[#49745B]">
                 Família
-                <Image src='/img/Icon/sobreNos/icoFamilia.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+                <Image src='/img/Icon/sobreNos/icoFamilia.svg' alt='Icone de família' width={40} height={40} className="w-7 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10" />
               </h4>
-              <p className="text-xl w-70">
+              <p className="text-base md:text-lg lg:text-xl w-full">
                 Experiências pensadas para todas as idades, do infantil ao sênior.
               </p>
             </div>
-            <div className={`border-2 border-[#b6b6b6] pl-10 pr-30 py-10 rounded-xl flex flex-col items-start ${style.zoom}`}>
-              <h4 className="flex text-3xl items-center mb-5 text-[#49745B]">
-                Família
-                <Image className="mx-1" src='/img/Icon/sobreNos/icoAventura.svg' alt='Icone de sustentabilidade' width={40} height={40} />
+
+            {/* Aventura */}
+            <div className={`border-2 border-[#b6b6b6] p-6 md:p-8 lg:pl-10 lg:pr-20 lg:py-10 rounded-xl flex flex-col items-start w-full sm:w-[45%] lg:w-[30%] ${style.zoom}`}>
+              <h4 className="flex text-xl md:text-2xl lg:text-3xl items-center gap-2 mb-4 md:mb-5 text-[#49745B]">
+                Aventura
+                <Image src='/img/Icon/sobreNos/icoAventura.svg' alt='Icone de aventura' width={40} height={40} className="w-7 h-7 md:w-9 md:h-9 lg:w-10 lg:h-10" />
               </h4>
-              <p className="text-xl w-70">
+              <p className="text-base md:text-lg lg:text-xl w-full">
                 Atividades seguras que conectam as pessoas à natureza.
               </p>
             </div>
+
           </div>
         </div>
       </div>
-      <div className={`w-full h-120 flex justify-around bg-[linear-gradient(106deg,#14494A_0%,#028F92_100%)] items-center ${style.aboreto}`}>
-        <div className="text-center">
-          <h2 className={`text-white text-8xl`}>
+      <div className={`w-full py-10 md:h-120 flex flex-wrap justify-around bg-[linear-gradient(106deg,#14494A_0%,#028F92_100%)] items-center gap-8 md:gap-0 px-4 ${style.aboreto}`}>
+
+        <div className="text-center w-1/2 md:w-auto">
+          <h2 className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
             14+
           </h2>
-          <p className="text-white text-3xl">
+          <p className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl">
             Experiencias
           </p>
         </div>
-        <div className="text-center">
-          <h2 className={`text-white text-8xl`}>
+
+        <div className="text-center w-1/2 md:w-auto">
+          <h2 className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
             3
           </h2>
-          <p className="text-white text-3xl">
+          <p className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl">
             Cachoeiras
           </p>
         </div>
-        <div className="text-center">
-          <h2 className={`text-white text-8xl`}>
+
+        <div className="text-center w-1/2 md:w-auto">
+          <h2 className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
             50k+
           </h2>
-          <p className="text-white text-3xl">
+          <p className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl">
             Visitantes/Ano
           </p>
         </div>
-        <div className="text-center">
-          <h2 className={`text-white text-8xl`}>
+
+        <div className="text-center w-1/2 md:w-auto">
+          <h2 className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
             100%
           </h2>
-          <p className="text-white text-3xl">
+          <p className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl">
             Natural
           </p>
         </div>
+
       </div>
       <div className="flex flex-col items-center py-20">
         <h1 className={`${style.aboreto} text-center text-8xl`}>

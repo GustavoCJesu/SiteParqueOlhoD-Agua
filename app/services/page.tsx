@@ -16,7 +16,7 @@ export default function Servico() {
                 <Image className={`${style.bannerImg} self-end w-full`} src='/img/hero/heroServicos.webp' alt='Hero Serviços' width={5000} height={300} />
             </div>
             <div className='flex justify-center w-full p-1 text-center'>
-                <h3 className={`${aboreto.className} text-[10px] w-full`}>
+                <h3 className={`${aboreto.className} text-[10px] md:text-3xl w-full`}>
                     Depois das aventuras, tem almoço no restaurante self-service
                 </h3>
             </div>

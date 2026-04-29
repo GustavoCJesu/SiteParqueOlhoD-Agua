@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+
+
+.aboreto {
+    font-family: 'Aboreto', Arial, sans-serif;
+}
+
+.imgGalery{
+
+    transition: all .5s;
+
+    &:hover{
+        transform: scale(1.01);
+    }
+    
+}

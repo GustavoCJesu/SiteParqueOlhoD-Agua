@@ -12,7 +12,7 @@ export default function Header() {
 
       <ul className='hidden md:flex justify-around items-center w-full text-xl'>
         <li><Link href='/'>Home</Link></li>
-        <li><a href="#">Galeria</a></li>
+        <li><Link href='/galery'>Galeria</Link></li>
         <li><a href="/services">Serviços</a></li>
         <li>
           <Image src="/img/logo/LogoParque.png" alt="Logo parque olho d'agua" width={100} height={100} />
@@ -36,7 +36,7 @@ export default function Header() {
       {menuOpen && (
         <ul className='flex flex-col md:hidden gap-4 mt-4 text-lg px-2'>
           <li><Link href='/' onClick={() => setMenuOpen(false)}>Home</Link></li>
-          <li><a href="#" onClick={() => setMenuOpen(false)}>Galeria</a></li>
+          <li><Link href="/galery" onClick={() => setMenuOpen(false)}>Galeria</Link></li>
           <li><a href="/services" onClick={() => setMenuOpen(false)}>Serviços</a></li>
           <li><a href="#" onClick={() => setMenuOpen(false)}>Blog</a></li>
           <li><a href="/contactUs" onClick={() => setMenuOpen(false)}>Contatenos</a></li>
