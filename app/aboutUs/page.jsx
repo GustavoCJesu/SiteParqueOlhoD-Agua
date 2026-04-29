@@ -24,7 +24,7 @@ export default function Component() {
         {/* Imagem */}
         <div className="w-full md:w-auto">
           <Image
-            className="w-full h-64 sm:h-96 md:h-125 lg:h-175 md:w-auto lg:w-180 object-cover rounded-xl"
+            className="w-full h-64 sm:h-96 md:h-125 lg:h-145 md:w-auto lg:w-110 object-cover rounded-xl"
             src='/img/cachoeira/olhodagua.webp'
             alt="Cachoeira olho d'água"
             width={1000}
@@ -34,7 +34,7 @@ export default function Component() {
 
         {/* Card de texto */}
         <div className="flex flex-col bg-[#EDE7DC] justify-center gap-4 md:gap-5 p-6 sm:p-8 md:p-10 rounded-xl w-full md:w-112.5 lg:w-180">
-          <h3 className="text-[#14494A] text-sm md:text-base">
+          <h3 className={`text-[#14494A] text-sm md:text-2xl ${style.aboreto}`}>
             NOSSA HISTORIA
           </h3>
           <h1 className={`${style.titleNossaHistoria} ${style.aboreto}`}>
