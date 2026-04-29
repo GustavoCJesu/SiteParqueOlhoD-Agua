@@ -14,7 +14,7 @@ export default function Component() {
             width={1000}
             height={1000}
           />
-          <h1 className={`absolute top-1 left-4 sm:left-8 md:top-1 md:left-9 lg:top-2 lg:left-8 text-3xl sm:text-6xl md:text-7xl lg:text-[6rem] whitespace-nowrap ${style.titlesobreNos}`}>
+          <h1 className={`absolute top-1 left-4 sm:left-8 md:top-1 md:left-9 lg:top-2 lg:left-8 text-3xl sm:text-6xl md:text-7xl lg:text-[7rem] whitespace-nowrap ${style.titlesobreNos}`}>
             SOBRE<span className="text-[#028F92]"> NÓS</span>
           </h1>
         </div>
