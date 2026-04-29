@@ -37,7 +37,7 @@ export default function Home() {
         {/* Imagem — oculta no mobile ou reduzida */}
         <div className='w-full md:w-1/2 flex justify-center md:justify-end mt-6 md:mt-0'>
           <Image
-            className={`${style.bannerImg} hidden self-end w-full md:w-auto h-full`}
+            className={`${style.bannerImg} hidden self-end w-full md:w-auto h-full lg:inline-block`}
             src='/img/BannerHome.png'
             alt='Imagem de uma cachoeira do parque'
             width={900}

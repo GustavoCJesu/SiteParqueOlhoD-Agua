@@ -46,7 +46,7 @@ export default function Footer() {
       <div className='w-full md:w-1/2 flex justify-center md:justify-end'>
         <Image
           className={`${styles.imgFooter} self-end w-full md:w-auto`}
-          src='/img/FotoFooter.jpg'
+          src='/img/FotoFooter.webp'
           height={600}
           width={600}
           alt='Foto aerea do parque'
