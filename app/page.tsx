@@ -16,7 +16,7 @@ export default function Home() {
 
 
   return (
-    <section className='my-5 text-[#525252] w-full'>
+    <section className='text-[#525252] w-full'>
 
       <div className='flex flex-col md:flex-row justify-between w-full'>
 
@@ -35,14 +35,15 @@ export default function Home() {
         </div>
 
         {/* Imagem — oculta no mobile ou reduzida */}
-        <div className='w-full md:w-1/2 flex justify-center md:justify-end mt-6 md:mt-0'>
+        <div className='w-full md:w-1/2 flex justify-center md:justify-end mt-6 md:mt-0 relative'>
           <Image
             className={`${style.bannerImg} hidden self-end w-full md:w-auto h-full lg:inline-block`}
-            src='/img/BannerHome.png'
+            src='/img/hero/heroHome.webp'
             alt='Imagem de uma cachoeira do parque'
             width={900}
             height={300}
           />
+          <div className="absolute inset-0 bg-linear-to-r from-white via-white/30 to-transparent w-1/2"></div>
         </div>
 
       </div>
@@ -139,8 +140,8 @@ export default function Home() {
         </Link>
 
       </div>
-      <div className="2-full flex justify-center">
-        <Link href='#' className={`bg-[#028F92] text-white py-5 px-10 rounded text-[25px] ${style.btnSeeMore}`}>Ver Mais</Link>
+      <div className="2-full flex justify-center my-10">
+        <Link href='/services' className={`bg-[#028F92] text-white py-5 px-10 rounded text-[25px] ${style.btnSeeMore}`}>Ver Mais</Link>
       </div>
     </section>
   );
