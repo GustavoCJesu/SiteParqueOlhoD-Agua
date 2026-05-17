@@ -24,8 +24,8 @@ export default function Servico() {
                 <div className='flex flex-col justify-start items-center w-1/2 md:w-auto'>
                     <Image unoptimized src='/img/Icon/GarfoFaca.svg' alt='Garfo e Faca' width={80} height={80} className='w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20' />
                     <p className='text-base md:text-xl lg:text-2xl text-center mt-2'>
-                        Segunda a Sexta R$49,90 <br/>
-                        Sabados R$59,90
+                        Sabados R$49,90 <br/>
+                        Domingos R$59,90
                         
                     </p>
                 </div>

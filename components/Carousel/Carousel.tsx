@@ -9,6 +9,7 @@ import style from './Carousel.module.css'
 interface CardItem {
   id: number;
   tag: string;
+  preco: string;
   title: string;
   description: string;
   image?: string;
@@ -17,6 +18,7 @@ interface CardItem {
 const items: CardItem[] = [
   {
     id: 1,
+    preco: 'R$200,00/Veiculo',
     tag: "Aventura",
     title: "Quadriciclo",
     description:
@@ -25,6 +27,7 @@ const items: CardItem[] = [
   },
   {
     id: 2,
+    preco: 'R$25,00/Pessoa',
     tag: "Natureza",
     title: "Caiaque",
     description:
@@ -33,6 +36,7 @@ const items: CardItem[] = [
   },
   {
     id: 3,
+    preco: 'R$25,00/Pessoa',
     tag: "Lazer",
     title: "Pedalinho",
     description:
@@ -41,6 +45,7 @@ const items: CardItem[] = [
   },
   {
     id: 4,
+    preco: 'R$5,00',
     tag: "Aventura",
     title: "Balanço Infinito",
     description:
@@ -49,11 +54,39 @@ const items: CardItem[] = [
   },
   {
     id: 5,
-    tag: "Natureza",
+    preco: 'R$25,00/Pessoa',
+    tag: "Aventura",
     title: "Passeio a Cavalo",
     description:
       "Explore trilhas e paisagens deslumbrantes a cavalo. Ideal para toda a família.",
     image: '/img/cards/cavalo.webp'
+  },
+  {
+    id: 6,
+    preco: 'R$25,00/Pessoa',
+    tag: "Natureza",
+    title: "Water Ball",
+    description:
+      "Explore trilhas e paisagens deslumbrantes a cavalo. Ideal para toda a família.",
+    image: '/img/cards/waterball.webp'
+  },
+  {
+    id: 7,
+    preco: 'R$5,00',
+    tag: "Lazer",
+    title: "Parede de Escalada",
+    description:
+      "Explore trilhas e paisagens deslumbrantes a cavalo. Ideal para toda a família.",
+    image: '/img/cards/parede.webp'
+  },
+  {
+    id: 8,
+    preco: 'R$5,00',
+    tag: "Kids",
+    title: "Tirolesa infantil",
+    description:
+      "Explore trilhas e paisagens deslumbrantes a cavalo. Ideal para toda a família.",
+    image: '/img/cards/tirolesa.webp'
   },
 ];
 
@@ -66,51 +99,55 @@ const getVisibleCount = () => {
   return VISIBLE_DEFAULT;
 };
 
+const getGap = () => {
+  if (typeof window === "undefined") return 160;
+  if (window.innerWidth < 640) return 16;
+  if (window.innerWidth < 1024) return 40;
+  return 160;
+};
+
 export default function Carousel() {
   const [current, setCurrent] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(getVisibleCount);
+  const [visibleCount, setVisibleCount] = useState(() => getVisibleCount());
   const trackRef = useRef<HTMLDivElement>(null);
   const steps = items.length - visibleCount;
 
-  // Atualiza visibleCount e corrige posição ao redimensionar
+  // Função central que aplica o transform — única fonte da verdade
+  const applyTransform = (index: number) => {
+    const card = trackRef.current?.children[0] as HTMLElement;
+    if (!card || !trackRef.current) return;
+    const cardWidth = card.offsetWidth;
+    const gap = getGap();
+    trackRef.current.style.transform = `translateX(-${index * (cardWidth + gap)}px)`;
+  };
+
   useEffect(() => {
-    const handleResize = () => {
-      const newVisible = getVisibleCount();
-      setVisibleCount(newVisible);
+  // Removida a linha do setVisibleCount aqui
 
-      // Garante que o current não fique fora do novo range de steps
-      setCurrent((prev) => {
-        const newSteps = items.length - newVisible;
-        const clamped = Math.min(prev, newSteps);
+  const handleResize = () => {
+    const newVisible = getVisibleCount();
+    setVisibleCount(newVisible);
+    setCurrent((prev) => {
+      const newSteps = items.length - newVisible;
+      const clamped = Math.min(prev, newSteps);
+      const card = trackRef.current?.children[0] as HTMLElement;
+      if (card && trackRef.current) {
+        const gap = getGap();
+        trackRef.current.style.transform = `translateX(-${clamped * (card.offsetWidth + gap)}px)`;
+      }
+      return clamped;
+    });
+  };
 
-        const card = trackRef.current?.children[0] as HTMLElement;
-        const cardWidth = card?.offsetWidth ?? 0;
-        const gap = window.innerWidth < 640 ? 16 : window.innerWidth < 1024 ? 40 : 160;
-        trackRef.current!.style.transform = `translateX(-${clamped * (cardWidth + gap)}px)`;
-
-        return clamped;
-      });
-    };
-
-    handleResize()
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
   const go = (n: number) => {
     const next = Math.max(0, Math.min(n, steps));
     setCurrent(next);
-
-    const card = trackRef.current?.children[0] as HTMLElement;
-    const cardWidth = card?.offsetWidth ?? 0;
-
-    // Gap dinâmico espelhando os breakpoints do Tailwind
-    const gap = window.innerWidth < 640 ? 16 : window.innerWidth < 1024 ? 40 : 160;
-
-    trackRef.current!.style.transform = `translateX(-${next * (cardWidth + gap)}px)`;
+    applyTransform(next);
   };
-
   return (
     <div className="w-full py-6 font-sans my-4 md:my-10">
       {/* Header */}
@@ -156,6 +193,7 @@ export default function Carousel() {
                   {item.tag}
                 </span>
                 <p className="text-sm font-medium text-gray-900 mb-1">{item.title}</p>
+                <p>{item.preco}</p>
                 <p className="text-xs text-gray-500 leading-relaxed mb-3 md:mb-4">{item.description}</p>
                 <button className={`${style.btnConfira} w-full py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-gray-700`}>
                   Confira

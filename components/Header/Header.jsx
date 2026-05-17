@@ -7,9 +7,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className='p-5 w-full text-[#525252] bg-[#F8F9F5]'>
-
-
+    <header className='sticky top-0 z-50 p-5 w-full text-[#525252] bg-[#F8F9F5]'>
       <ul className='hidden md:flex justify-around items-center w-full text-xl'>
         <li><Link href='/'>Home</Link></li>
         <li><Link href='/galery'>Galeria</Link></li>
@@ -17,7 +15,7 @@ export default function Header() {
         <li>
           <Image src="/img/logo/LogoNova.png"  alt="Logo parque olho d'agua" width={200} height={100} />
         </li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="/blog">Blog</a></li>
         <li><a href="/contactUs">Contatenos</a></li>
         <li><Link href='/aboutUs'>Sobre Nós</Link></li>
       </ul>
