@@ -67,7 +67,7 @@ const items: CardItem[] = [
     tag: "Natureza",
     title: "Water Ball",
     description:
-      "Explore trilhas e paisagens deslumbrantes a cavalo. Ideal para toda a família.",
+      "Entre na bola inflável e desafie seu equilíbrio enquanto se diverte caminhando e rolando sobre a água.",
     image: '/img/cards/waterball.webp'
   },
   {
@@ -76,7 +76,7 @@ const items: CardItem[] = [
     tag: "Lazer",
     title: "Parede de Escalada",
     description:
-      "Explore trilhas e paisagens deslumbrantes a cavalo. Ideal para toda a família.",
+      "Desafie seus limites em uma atividade que estimula equilíbrio, coordenação e superação, com equipamentos de segurança e acompanhamento.",
     image: '/img/cards/parede.webp'
   },
   {
@@ -85,7 +85,7 @@ const items: CardItem[] = [
     tag: "Kids",
     title: "Tirolesa infantil",
     description:
-      "Explore trilhas e paisagens deslumbrantes a cavalo. Ideal para toda a família.",
+      "Uma aventura segura e emocionante para as crianças, proporcionando diversão enquanto deslizam por um percurso adaptado para os pequenos.",
     image: '/img/cards/tirolesa.webp'
   },
 ];
@@ -195,9 +195,6 @@ export default function Carousel() {
                 <p className="text-sm font-medium text-gray-900 mb-1">{item.title}</p>
                 <p>{item.preco}</p>
                 <p className="text-xs text-gray-500 leading-relaxed mb-3 md:mb-4">{item.description}</p>
-                <button className={`${style.btnConfira} w-full py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-gray-700`}>
-                  Confira
-                </button>
               </div>
             </div>
           ))}
