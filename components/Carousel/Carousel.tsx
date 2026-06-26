@@ -32,7 +32,7 @@ const items: CardItem[] = [
     title: "Caiaque",
     description:
       "Passeio guiado, seguro e ideal para todas as idades. Relaxe em meio à natureza.",
-    image: '/img/cards/caiaqueServico.webp'
+    image: '/img/cards/caiaqueServicon.webp'
   },
   {
     id: 3,

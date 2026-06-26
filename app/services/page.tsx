@@ -61,7 +61,7 @@ export default function Servico() {
     <div className='w-full relative'>
       <Image
         className='w-full h-64 sm:h-80 md:h-125 lg:h-162.5 rounded-xl brightness-65 object-cover'
-        src='/img/cachoeira/olhodagua.webp'
+        src='/img/cachoeira/olhodaguan.webp'
         alt="Cachoeira Olho D'água"
         height={5000}
         width={5000}
@@ -83,7 +83,7 @@ export default function Servico() {
     <div className={`relative ${style.cardCachoeiras}`}>
       <Image
         className='w-full h-44 sm:h-56 md:h-61.25 lg:h-77.5 rounded-xl object-cover brightness-65'
-        src='/img/cachoeira/pocofundo.webp'
+        src='/img/cachoeira/pocofundon.webp'
         alt='Cachoeira Poço Fundo'
         height={5000}
         width={5000}
@@ -101,7 +101,7 @@ export default function Servico() {
     <div className={`relative ${style.cardCachoeiras}`}>
       <Image
         className='w-full h-44 sm:h-56 md:h-61.25 lg:h-77.5 rounded-xl object-cover brightness-65'
-        src='/img/cachoeira/escorrega.webp'
+        src='/img/cachoeira/escorregan.webp'
         alt="Cachoeira Escorrega"
         height={5000}
         width={5000}
