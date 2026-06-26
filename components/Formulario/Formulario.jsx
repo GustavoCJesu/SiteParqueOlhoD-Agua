@@ -23,7 +23,7 @@ export default function Formulario() {
         formData.append('message', message)
 
         try {
-            const res = await fetch('/send_email.php', { method: 'POST', body: formData })
+            const res = await fetch('/api/send-email', { method: 'POST', body: formData })
             const data = await res.json()
             if (data.success) {
                 setStatus('success')

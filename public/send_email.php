@@ -35,12 +35,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// ── Configurações SMTP Hostinger ─────────────────────────────────────────────
-define('SMTP_HOST',     'smtp.hostinger.com');
-define('SMTP_USERNAME', 'contato@parqueolhodagua.com.br');
-define('SMTP_PASSWORD', 'SUA_SENHA_AQUI'); // senha do email na Hostinger (hPanel → Emails)
-define('SMTP_PORT',     465);              // 465 = SSL
-define('EMAIL_DESTINO', 'contato@parqueolhodagua.com.br');
+// ── Configurações SMTP Gmail ──────────────────────────────────────────────────
+define('SMTP_HOST',     'smtp.gmail.com');
+define('SMTP_USERNAME', 'parqueolhodagua.andradas@gmail.com');
+define('SMTP_PASSWORD', 'ltzf ioiz nqfi dnka'); // Senha de app do Google
+define('SMTP_PORT',     587);              // 587 = TLS (Gmail)
+define('EMAIL_DESTINO', 'parqueolhodagua.andradas@gmail.com');
 // ─────────────────────────────────────────────────────────────────────────────
 
 $mail = new PHPMailer(true);
@@ -51,7 +51,7 @@ try {
     $mail->SMTPAuth   = true;
     $mail->Username   = SMTP_USERNAME;
     $mail->Password   = SMTP_PASSWORD;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL (porta 465)
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS (porta 587)
     $mail->Port       = SMTP_PORT;
     $mail->CharSet    = 'UTF-8';
 
