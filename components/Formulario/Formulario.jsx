@@ -6,9 +6,35 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import Link from 'next/link'
 export default function Formulario() {
 
-
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [objetivo, setObjetivo] = useState('')
+    const [message, setMessage] = useState('')
+    const [status, setStatus] = useState(null) // 'loading' | 'success' | 'error'
+
+    async function handleSubmit(e) {
+        e.preventDefault()
+        setStatus('loading')
+
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('email', email)
+        formData.append('objetivo', objetivo)
+        formData.append('message', message)
+
+        try {
+            const res = await fetch('/send_email.php', { method: 'POST', body: formData })
+            const data = await res.json()
+            if (data.success) {
+                setStatus('success')
+                setName(''); setEmail(''); setObjetivo(''); setMessage('')
+            } else {
+                setStatus('error')
+            }
+        } catch {
+            setStatus('error')
+        }
+    }
 
     return (
         <section className="flex text-[#525252] bg-[#F2F2F2] p-5 md:p-10 flex-wrap">
@@ -96,7 +122,7 @@ export default function Formulario() {
                     Envie uma mensagem
                 </h2>
                 <div className="w-full max-w-md px-4 md:px-0">
-                    <form className='flex flex-col items-center'>
+                    <form className='flex flex-col items-center' onSubmit={handleSubmit}>
                         <label className='text-base md:text-[20px] self-start'>Nome Completo:</label>
                         <input
                             className={`${style.inpForm} w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition-all`}
@@ -104,14 +130,16 @@ export default function Formulario() {
                             placeholder="Nome..."
                             value={name}
                             onChange={(e) => setName(e.target.value)}
+                            required
                         />
                         <label className='text-base md:text-[20px] self-start'>Email:</label>
                         <input
                             className={`${style.inpForm} w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition-all`}
-                            type="text"
+                            type="email"
                             placeholder="Email..."
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                         <label className='text-base md:text-[20px] self-start'>Objetivo do contato:</label>
                         <input
@@ -120,30 +148,41 @@ export default function Formulario() {
                             name="objetivo"
                             placeholder="Selecione ou digite o motivo..."
                             className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition-all"
+                            value={objetivo}
+                            onChange={(e) => setObjetivo(e.target.value)}
                         />
 
                         <datalist id="objetivos-contato">
-                            {/* Opções voltadas para o Parque Olho D'Água */}
                             <option value="Informações sobre Visitação" />
                             <option value="Agendamento de Grupos/Escolas" />
                             <option value="Eventos e Ensaios Fotográficos" />
-
-                            {/* Opções voltadas para Projetos/Institucional (ACAFEG) */}
                             <option value="Dúvidas sobre Parcerias" />
                             <option value="Suporte Técnico / Feedback" />
                             <option value="Orçamentos e Consultoria" />
-
-                            {/* Opções Gerais */}
                             <option value="Sugestões e Reclamações" />
                             <option value="Outros" />
                         </datalist>
-                        <label className='text-base md:text-[20px] self-start'>Assunto:</label>
-                        <textarea className={`${style.message} w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition-all`} />
+                        <label className='text-base md:text-[20px] self-start'>Mensagem:</label>
+                        <textarea
+                            className={`${style.message} w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition-all`}
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            required
+                        />
+
+                        {status === 'success' && (
+                            <p className='text-green-600 mt-3 text-sm font-medium'>Mensagem enviada com sucesso!</p>
+                        )}
+                        {status === 'error' && (
+                            <p className='text-red-500 mt-3 text-sm font-medium'>Erro ao enviar. Tente novamente.</p>
+                        )}
+
                         <button
-                            className={`py-3 px-1 my-5 bg-linear-to-r from-[#14494A] to-[#028F92] w-full md:w-50 text-white rounded ${style.buttonForm}`}
+                            className={`py-3 px-1 my-5 bg-linear-to-r from-[#14494A] to-[#028F92] w-full md:w-50 text-white rounded ${style.buttonForm} disabled:opacity-60`}
                             type='submit'
+                            disabled={status === 'loading'}
                         >
-                            Enviar
+                            {status === 'loading' ? 'Enviando...' : 'Enviar'}
                         </button>
                     </form>
                 </div>
