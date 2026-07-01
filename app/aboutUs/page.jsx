@@ -5,18 +5,25 @@ import style from './aboutUs.module.css'
 export default function Component() {
   return (
     <section className="text-[#525252]">
-      <div className="w-full">
-        <div className="relative p-20">
-          <Image
-            className="w-full object-contain"
-            src='/img/hero/heroSobreNos.svg'
-            alt='Banner da pagina Sobre Nós'
-            width={1000}
-            height={1000}
-          />
-          <h1 className={`absolute top-1 left-4 sm:left-8 md:top-1 md:left-9 lg:top-2 lg:left-8 text-3xl sm:text-6xl md:text-7xl lg:text-[7rem] whitespace-nowrap ${style.titlesobreNos}`}>
+      <div className="relative w-full h-64 sm:h-80 md:h-105 lg:h-130 overflow-hidden">
+        <Image
+          src="/img/hero/heroSobreNos.webp"
+          alt="Floresta do Parque Olho D'Água"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/35 to-transparent" />
+        <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-10 lg:px-16">
+          <span className="text-xs uppercase tracking-[0.3em] text-[#028F92] mb-3 sm:mb-5">
+            Conheça nossa história
+          </span>
+          <h1 className={`text-white text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] whitespace-nowrap drop-shadow-md ${style.titlesobreNos}`}>
             SOBRE<span className="text-[#028F92]"> NÓS</span>
           </h1>
+          <p className="hidden sm:block text-white/75 text-sm sm:text-base md:text-lg mt-4 sm:mt-5 max-w-md">
+            Um parque nascido do amor pela natureza e pela cidade de Andradas.
+          </p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 lg:gap-30 px-4 sm:px-8 md:px-10 py-10">
