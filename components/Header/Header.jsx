@@ -36,7 +36,7 @@ export default function Header() {
           <li><Link href='/' onClick={() => setMenuOpen(false)}>Home</Link></li>
           <li><Link href="/galery" onClick={() => setMenuOpen(false)}>Galeria</Link></li>
           <li><a href="/services" onClick={() => setMenuOpen(false)}>Serviços</a></li>
-          <li><a href="#" onClick={() => setMenuOpen(false)}>Blog</a></li>
+          <li><a href="/blog" onClick={() => setMenuOpen(false)}>Blog</a></li>
           <li><a href="/contactUs" onClick={() => setMenuOpen(false)}>Contate-nos</a></li>
           <li><Link href='/aboutUs' onClick={() => setMenuOpen(false)}>Sobre Nós</Link></li>
         </ul>
