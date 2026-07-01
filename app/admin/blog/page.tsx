@@ -1,15 +1,17 @@
 'use client'
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Plus, Trash2, Save, Eye, X, Leaf, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Plus, Trash2, Save, Eye, X, Leaf, AlertCircle, CheckCircle2, LogOut, Pencil, Loader2 } from "lucide-react";
+import ImageUpload from "@/components/ImageUpload";
 
 type Post = {
-  id: number;
+  id: string;
   titulo: string;
   resumo: string;
   conteudo: string[];
   categoria: string;
-  data: string;
+  created_at: string;
   leitura: string;
   autor: string;
   imagem: string;
@@ -20,8 +22,9 @@ const categorias = ["Trilhas", "Aventura", "Fauna", "História", "Visitação"];
 
 type Feedback = { tipo: "sucesso" | "erro"; texto: string } | null;
 
-export default function CadastroBlog() {
-  // Campos do formulário
+export default function AdminBlog() {
+  const router = useRouter()
+
   const [titulo, setTitulo] = useState("");
   const [resumo, setResumo] = useState("");
   const [paragrafos, setParagrafos] = useState<string[]>([""]);
@@ -31,10 +34,24 @@ export default function CadastroBlog() {
   const [imagem, setImagem] = useState("");
   const [destaque, setDestaque] = useState(false);
 
-  // Lista local de posts cadastrados (substitua por chamada à API)
-  const [postsCadastrados, setPostsCadastrados] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [carregando, setCarregando] = useState(true);
+  const [editandoId, setEditandoId] = useState<string | null>(null);
   const [preview, setPreview] = useState<Post | null>(null);
   const [feedback, setFeedback] = useState<Feedback>(null);
+  const [salvando, setSalvando] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/admin/posts')
+      .then(r => r.json())
+      .then(data => setPosts(data.posts ?? []))
+      .finally(() => setCarregando(false))
+  }, [])
+
+  const handleLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' })
+    router.push('/login')
+  }
 
   const limparForm = () => {
     setTitulo("");
@@ -45,6 +62,34 @@ export default function CadastroBlog() {
     setLeitura("");
     setImagem("");
     setDestaque(false);
+    setEditandoId(null);
+    setFeedback(null);
+  };
+
+  const iniciarEdicao = (post: Post) => {
+    setTitulo(post.titulo);
+    setResumo(post.resumo);
+    setParagrafos(post.conteudo.length > 0 ? post.conteudo : [""]);
+    setCategoria(post.categoria);
+    setAutor(post.autor);
+    setLeitura(post.leitura);
+    setImagem(post.imagem);
+    setDestaque(post.destaque ?? false);
+    setEditandoId(post.id);
+    setFeedback(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleExcluir = async (id: string) => {
+    if (!confirm("Tem certeza que deseja excluir este post? Esta ação não pode ser desfeita.")) return;
+
+    const res = await fetch(`/api/admin/posts/${id}`, { method: 'DELETE' });
+    if (res.ok) {
+      setPosts(lista => lista.filter(p => p.id !== id));
+      if (editandoId === id) limparForm();
+    } else {
+      setFeedback({ tipo: "erro", texto: "Erro ao excluir o post." });
+    }
   };
 
   const atualizarParagrafo = (i: number, valor: string) => {
@@ -57,9 +102,9 @@ export default function CadastroBlog() {
     setParagrafos((p) => (p.length === 1 ? [""] : p.filter((_, idx) => idx !== i)));
   };
 
-  const formatarDataHoje = () => {
+  const formatarData = (iso: string) => {
     const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-    const d = new Date();
+    const d = new Date(iso);
     return `${String(d.getDate()).padStart(2, "0")} ${meses[d.getMonth()]} ${d.getFullYear()}`;
   };
 
@@ -69,45 +114,56 @@ export default function CadastroBlog() {
 
     const paragrafosLimpos = paragrafos.map((p) => p.trim()).filter(Boolean);
 
-    // Validação básica
     if (!titulo.trim() || !resumo.trim() || paragrafosLimpos.length === 0 || !autor.trim() || !imagem.trim()) {
       setFeedback({ tipo: "erro", texto: "Preencha todos os campos obrigatórios." });
       return;
     }
 
-    const novoPost: Post = {
-      id: Date.now(),
+    setSalvando(true);
+
+    const payload = {
       titulo: titulo.trim(),
       resumo: resumo.trim(),
       conteudo: paragrafosLimpos,
       categoria,
-      data: formatarDataHoje(),
       leitura: leitura.trim() || "5 min",
       autor: autor.trim(),
       imagem: imagem.trim(),
       destaque,
     };
 
-    // 🔌 Aqui você integra com seu backend / banco de dados:
-    // try {
-    //   const res = await fetch("/api/posts", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(novoPost),
-    //   });
-    //   if (!res.ok) throw new Error();
-    // } catch {
-    //   setFeedback({ tipo: "erro", texto: "Não foi possível salvar. Tente novamente." });
-    //   return;
-    // }
-
-    setPostsCadastrados((lista) => [novoPost, ...lista]);
-    setFeedback({ tipo: "sucesso", texto: "Post cadastrado com sucesso." });
-    limparForm();
-  };
-
-  const excluirPost = (id: number) => {
-    setPostsCadastrados((lista) => lista.filter((p) => p.id !== id));
+    if (editandoId) {
+      const res = await fetch(`/api/admin/posts/${editandoId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json();
+      setSalvando(false);
+      if (!res.ok) {
+        setFeedback({ tipo: "erro", texto: json.error || "Erro ao salvar alterações." });
+        return;
+      }
+      setPosts(lista => lista.map(p => p.id === editandoId ? { ...p, ...payload } : p));
+      setFeedback({ tipo: "sucesso", texto: "Post atualizado com sucesso." });
+      limparForm();
+    } else {
+      const res = await fetch('/api/admin/posts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json();
+      setSalvando(false);
+      if (!res.ok) {
+        setFeedback({ tipo: "erro", texto: json.error || "Erro ao publicar." });
+        return;
+      }
+      const novoPost: Post = { id: json.id, created_at: new Date().toISOString(), ...payload };
+      setPosts(lista => [novoPost, ...lista]);
+      setFeedback({ tipo: "sucesso", texto: "Post publicado com sucesso." });
+      limparForm();
+    }
   };
 
   const inputBase =
@@ -118,15 +174,30 @@ export default function CadastroBlog() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[#1f2a1c]/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14 lg:py-20">
-          <span className="inline-block text-xs uppercase tracking-[0.3em] text-[#3d5a2a] mb-4">
-            Painel · Blog
-          </span>
-          <h1 className="font-serif text-4xl lg:text-5xl leading-tight max-w-3xl">
-            Cadastrar nova <em className="text-[#3d5a2a]">publicação</em>.
-          </h1>
-          <p className="mt-4 text-[#1f2a1c]/70 max-w-xl">
-            Preencha as informações abaixo. Você pode visualizar antes de publicar.
-          </p>
+          <div className="flex items-start justify-between">
+            <div>
+              <span className="inline-block text-xs uppercase tracking-[0.3em] text-[#3d5a2a] mb-4">
+                Painel · Blog
+              </span>
+              <h1 className="font-serif text-4xl lg:text-5xl leading-tight max-w-3xl">
+                {editandoId
+                  ? <>Editar <em className="text-[#3d5a2a]">publicação</em>.</>
+                  : <>Cadastrar nova <em className="text-[#3d5a2a]">publicação</em>.</>
+                }
+              </h1>
+              <p className="mt-4 text-[#1f2a1c]/70 max-w-xl">
+                Preencha as informações abaixo. Você pode visualizar antes de publicar.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-sm text-[#1f2a1c]/60 hover:text-red-600 transition mt-1"
+            >
+              <LogOut className="w-4 h-4" />
+              Sair
+            </button>
+          </div>
         </div>
         <div className="absolute -bottom-12 -right-12 opacity-[0.06] pointer-events-none">
           <Leaf className="w-72 h-72 text-[#3d5a2a]" />
@@ -136,7 +207,6 @@ export default function CadastroBlog() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12 grid lg:grid-cols-3 gap-10">
         {/* Formulário */}
         <form onSubmit={handleSubmit} className="lg:col-span-2 space-y-8">
-          {/* Feedback */}
           {feedback && (
             <div
               className={`flex items-center gap-3 px-4 py-3 rounded-sm border text-sm ${
@@ -229,19 +299,13 @@ export default function CadastroBlog() {
                   className={inputBase}
                 />
               </div>
+            </div>
 
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-[#1f2a1c]/70 mb-2">
-                  URL da imagem de capa <span className="text-[#3d5a2a]">*</span>
-                </label>
-                <input
-                  type="url"
-                  value={imagem}
-                  onChange={(e) => setImagem(e.target.value)}
-                  placeholder="https://..."
-                  className={inputBase}
-                />
-              </div>
+            <div>
+              <label className="block text-xs uppercase tracking-wider text-[#1f2a1c]/70 mb-2">
+                Imagem de capa <span className="text-[#3d5a2a]">*</span>
+              </label>
+              <ImageUpload value={imagem} onChange={setImagem} />
             </div>
 
             <label className="flex items-center gap-3 pt-2 cursor-pointer select-none">
@@ -305,6 +369,15 @@ export default function CadastroBlog() {
 
           {/* Ações */}
           <div className="flex flex-col sm:flex-row gap-3 sm:justify-end">
+            {editandoId && (
+              <button
+                type="button"
+                onClick={limparForm}
+                className="px-5 py-2.5 text-sm border border-[#1f2a1c]/20 rounded-sm hover:border-[#1f2a1c]/40 transition"
+              >
+                Cancelar edição
+              </button>
+            )}
             <button
               type="button"
               onClick={limparForm}
@@ -314,16 +387,23 @@ export default function CadastroBlog() {
             </button>
             <button
               type="submit"
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm bg-[#3d5a2a] text-[#f6f4ee] rounded-sm hover:bg-[#2f4621] transition font-medium"
+              disabled={salvando}
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm bg-[#3d5a2a] text-[#f6f4ee] rounded-sm hover:bg-[#2f4621] transition font-medium disabled:opacity-60"
             >
-              <Save className="w-4 h-4" /> Publicar post
+              {salvando ? (
+                <><Loader2 className="w-4 h-4 animate-spin" /> Salvando...</>
+              ) : editandoId ? (
+                <><Save className="w-4 h-4" /> Salvar alterações</>
+              ) : (
+                <><Save className="w-4 h-4" /> Publicar post</>
+              )}
             </button>
           </div>
         </form>
 
-        {/* Sidebar: Preview e lista */}
+        {/* Sidebar */}
         <aside className="space-y-8">
-          {/* Mini preview do card */}
+          {/* Pré-visualização */}
           <div className="bg-white/40 border border-[#1f2a1c]/10 rounded-sm p-6 sticky top-6">
             <h3 className="font-serif text-lg mb-1">Pré-visualização</h3>
             <p className="text-xs text-[#1f2a1c]/60 mb-5">É assim que o card aparece no blog.</p>
@@ -349,9 +429,9 @@ export default function CadastroBlog() {
             <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#3d5a2a] mb-2">
               <span>{categoria}</span>
               <span className="w-4 h-px bg-[#3d5a2a]/50"></span>
-              <span className="text-[#1f2a1c]/60">{formatarDataHoje()}</span>
+              <span className="text-[#1f2a1c]/60">{formatarData(new Date().toISOString())}</span>
             </div>
-            <h4 className="font-serif text-lg leading-snug mb-2 min-h-[1.5rem]">
+            <h4 className="font-serif text-lg leading-snug mb-2 min-h-6">
               {titulo || <span className="text-[#1f2a1c]/30">Título do post...</span>}
             </h4>
             <p className="text-xs text-[#1f2a1c]/70 leading-relaxed line-clamp-3">
@@ -359,52 +439,70 @@ export default function CadastroBlog() {
             </p>
           </div>
 
-          {/* Lista de cadastrados */}
+          {/* Lista de posts */}
           <div className="bg-white/40 border border-[#1f2a1c]/10 rounded-sm p-6">
-            <h3 className="font-serif text-lg mb-1">Cadastrados nesta sessão</h3>
+            <h3 className="font-serif text-lg mb-1">Posts publicados</h3>
             <p className="text-xs text-[#1f2a1c]/60 mb-5">
-              {postsCadastrados.length === 0
+              {carregando
+                ? "Carregando..."
+                : posts.length === 0
                 ? "Nenhum post ainda."
-                : `${postsCadastrados.length} ${postsCadastrados.length === 1 ? "post" : "posts"}.`}
+                : `${posts.length} ${posts.length === 1 ? "post" : "posts"}.`}
             </p>
 
-            <ul className="space-y-3">
-              {postsCadastrados.map((p) => (
-                <li
-                  key={p.id}
-                  className="flex items-start gap-3 pb-3 border-b border-[#1f2a1c]/10 last:border-0"
-                >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{p.titulo}</p>
-                    <p className="text-xs text-[#1f2a1c]/60">
-                      {p.categoria} · {p.data}
-                      {p.destaque && <span className="text-[#3d5a2a] ml-2">★ destaque</span>}
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setPreview(p)}
-                    className="text-[#1f2a1c]/50 hover:text-[#3d5a2a] transition"
-                    aria-label="Visualizar"
+            {carregando ? (
+              <div className="flex justify-center py-4">
+                <Loader2 className="w-5 h-5 animate-spin text-[#3d5a2a]" />
+              </div>
+            ) : (
+              <ul className="space-y-3">
+                {posts.map((p) => (
+                  <li
+                    key={p.id}
+                    className={`pb-3 border-b border-[#1f2a1c]/10 last:border-0 ${editandoId === p.id ? "opacity-50" : ""}`}
                   >
-                    <Eye className="w-4 h-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => excluirPost(p.id)}
-                    className="text-[#1f2a1c]/50 hover:text-red-600 transition"
-                    aria-label="Excluir"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </li>
-              ))}
-            </ul>
+                    <div className="flex items-start gap-3">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{p.titulo}</p>
+                        <p className="text-xs text-[#1f2a1c]/60">
+                          {p.categoria} · {formatarData(p.created_at)}
+                          {p.destaque && <span className="text-[#3d5a2a] ml-2">★</span>}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setPreview(p)}
+                        className="text-[#1f2a1c]/50 hover:text-[#3d5a2a] transition shrink-0"
+                        aria-label="Visualizar"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => iniciarEdicao(p)}
+                        className="text-[#1f2a1c]/50 hover:text-[#3d5a2a] transition shrink-0"
+                        aria-label="Editar"
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleExcluir(p.id)}
+                        className="text-[#1f2a1c]/50 hover:text-red-600 transition shrink-0"
+                        aria-label="Excluir"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </aside>
       </div>
 
-      {/* Modal de preview do post completo */}
+      {/* Modal de preview */}
       {preview && (
         <div
           role="dialog"
@@ -438,7 +536,7 @@ export default function CadastroBlog() {
               <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[#3d5a2a] mb-5">
                 <span>{preview.categoria}</span>
                 <span className="w-8 h-px bg-[#3d5a2a]"></span>
-                <span className="text-[#1f2a1c]/60">{preview.data}</span>
+                <span className="text-[#1f2a1c]/60">{formatarData(preview.created_at)}</span>
               </div>
               <h2 className="font-serif text-3xl md:text-4xl leading-tight mb-5">{preview.titulo}</h2>
               <div className="text-sm text-[#1f2a1c]/60 mb-8 pb-8 border-b border-[#1f2a1c]/10">

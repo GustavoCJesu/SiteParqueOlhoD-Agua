@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/cadastroBlog/'],
+      disallow: ['/api/', '/admin/', '/login/'],
     },
     sitemap: 'https://parqueolhodagua.com.br/sitemap.xml',
   }

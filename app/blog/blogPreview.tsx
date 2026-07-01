@@ -3,131 +3,28 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Search, Clock, ArrowRight, Leaf, X } from "lucide-react";
 
-type Post = {
-  id: number;
+export type Post = {
+  id: string;
   titulo: string;
   resumo: string;
   conteudo: string[];
   categoria: string;
-  data: string;
+  created_at: string;
   leitura: string;
   autor: string;
   imagem: string;
   destaque?: boolean;
 };
 
-const posts: Post[] = [
-  {
-    id: 1,
-    titulo: "Trilhas para iniciantes: por onde começar no Parque",
-    resumo:
-      "Um guia honesto sobre as três trilhas mais leves do parque, com tempo médio, dificuldade real e o que levar na mochila.",
-    conteudo: [
-      "Se é a sua primeira visita ao Parque Olho D'Água, a melhor forma de conhecer o lugar é a pé. Reunimos aqui as três trilhas mais leves, ideais para quem está começando ou quer um passeio tranquilo em família.",
-      "A Trilha das Nascentes tem cerca de 1,2 km, percurso plano e bem sinalizado. É a porta de entrada perfeita: você passa pelas principais fontes naturais e termina próximo ao deque central. Tempo médio: 40 minutos.",
-      "Já a Trilha do Bosque (1,8 km) tem uma subida leve no meio do caminho, mas recompensa com sombra o trajeto inteiro. Boa para dias mais quentes.",
-      "Por último, a Trilha do Mirante (2,3 km) é a mais longa das três e termina em um ponto alto com vista para a represa. Leve água, protetor solar e, de preferência, faça pela manhã.",
-      "O que levar: tênis fechado, garrafa de água, repelente e, se quiser registrar tudo, uma câmera. Bastão de caminhada é opcional, mas ajuda nas descidas.",
-    ],
-    categoria: "Trilhas",
-    data: "12 Jun 2026",
-    leitura: "6 min",
-    autor: "Equipe do Parque",
-    imagem:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80",
-    destaque: true,
-  },
-  {
-    id: 2,
-    titulo: "A história das nascentes que dão nome ao parque",
-    resumo:
-      "Conheça as fontes naturais protegidas há décadas e por que elas são essenciais para Andradas.",
-    conteudo: [
-      "As nascentes que batizam o parque brotam de afloramentos rochosos preservados há mais de cinquenta anos. Antes da criação da área de proteção, parte da mata ao redor já era cuidada por moradores locais.",
-      "Hoje, as fontes abastecem parte do sistema hídrico da região e servem como referência de qualidade da água em Andradas. Monitoramentos periódicos garantem que nada altere o equilíbrio do lugar.",
-      "Visitar as nascentes é também entender a importância da preservação. Por isso, o acesso é feito por passarelas elevadas — para que ninguém pise no solo úmido ao redor das fontes.",
-    ],
-    categoria: "História",
-    data: "05 Jun 2026",
-    leitura: "8 min",
-    autor: "Marina Costa",
-    imagem:
-      "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1200&q=80",
-  },
-  {
-    id: 3,
-    titulo: "Quadriciclo no parque: o que esperar do passeio",
-    resumo:
-      "Roteiro, equipamentos de segurança e dicas para aproveitar a aventura ao máximo.",
-    conteudo: [
-      "O passeio de quadriciclo dura em média 40 minutos e percorre trechos fora das trilhas a pé, sempre acompanhado por um guia experiente do parque.",
-      "Todos os equipamentos de segurança são fornecidos: capacete, luvas e instruções iniciais. Não é preciso ter experiência prévia — o ritmo é ajustado ao grupo.",
-      "Idade mínima para conduzir: 18 anos com CNH. Menores podem ir como passageiros acompanhados.",
-    ],
-    categoria: "Aventura",
-    data: "28 Mai 2026",
-    leitura: "4 min",
-    autor: "Rafael Lima",
-    imagem:
-      "https://images.unsplash.com/photo-1533873984035-25970ab07461?w=1200&q=80",
-  },
-  {
-    id: 4,
-    titulo: "Aves que você pode observar entre maio e agosto",
-    resumo:
-      "Lista com 12 espécies comuns na região, melhores horários e pontos de observação.",
-    conteudo: [
-      "O outono e o inverno são as melhores estações para observação de aves no parque. Com a vegetação menos densa, fica mais fácil identificar as espécies.",
-      "Entre as mais avistadas: sabiá-laranjeira, bem-te-vi, tucano-de-bico-verde, gralha-azul e diversas espécies de beija-flores. O melhor horário é logo após o nascer do sol.",
-      "Recomendamos levar binóculo, um caderno para anotações e roupas em tons neutros. Silêncio também faz parte do passeio.",
-    ],
-    categoria: "Fauna",
-    data: "20 Mai 2026",
-    leitura: "7 min",
-    autor: "Equipe do Parque",
-    imagem:
-      "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1200&q=80",
-  },
-  {
-    id: 5,
-    titulo: "Piquenique no parque: o que pode e o que não pode",
-    resumo:
-      "Regras simples para curtir um dia em família sem prejudicar o ambiente.",
-    conteudo: [
-      "Piquenique é permitido em todas as áreas gramadas demarcadas. Use a toalha, escolha um lugar à sombra e aproveite.",
-      "O que pode: comidas frias, sucos, frutas, sanduíches, utensílios reutilizáveis e brinquedos sem som amplificado.",
-      "O que não pode: churrasqueiras portáteis, fogueiras, garrafas de vidro e som alto. E, claro: o que entra com você, sai com você. Não deixe nada para trás.",
-    ],
-    categoria: "Visitação",
-    data: "14 Mai 2026",
-    leitura: "3 min",
-    autor: "Equipe do Parque",
-    imagem:
-      "https://images.unsplash.com/photo-1528127269322-539801943592?w=1200&q=80",
-  },
-  {
-    id: 6,
-    titulo: "Caiaque e pedalinho: qual passeio escolher?",
-    resumo:
-      "Comparação prática entre os dois passeios aquáticos mais procurados.",
-    conteudo: [
-      "Os dois passeios saem do mesmo deque, mas oferecem experiências bem diferentes.",
-      "O caiaque é individual ou duplo, exige um pouco mais de esforço físico e leva você a pontos mais afastados da margem. Ideal para quem quer silêncio e contato direto com a água.",
-      "Já o pedalinho comporta até quatro pessoas, é mais estável e perfeito para famílias com crianças pequenas. O percurso é mais curto, mas igualmente bonito.",
-      "Dica: nos fins de semana, vá pela manhã para evitar fila.",
-    ],
-    categoria: "Aventura",
-    data: "02 Mai 2026",
-    leitura: "5 min",
-    autor: "Rafael Lima",
-    imagem:
-      "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=1200&q=80",
-  },
-];
-
 const categorias = ["Tudo", "Trilhas", "Aventura", "Fauna", "História", "Visitação"];
 
-export default function Blog() {
+function formatarData(iso: string) {
+  const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+  const d = new Date(iso);
+  return `${String(d.getDate()).padStart(2, "0")} ${meses[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+export default function BlogPreview({ posts }: { posts: Post[] }) {
   const [filtro, setFiltro] = useState<string>("Tudo");
   const [busca, setBusca] = useState<string>("");
   const [postAtivo, setPostAtivo] = useState<Post | null>(null);
@@ -143,7 +40,6 @@ export default function Blog() {
           p.resumo.toLowerCase().includes(busca.toLowerCase())
     );
 
-  // Bloqueia o scroll do body e fecha modal com ESC
   useEffect(() => {
     if (!postAtivo) return;
     document.body.style.overflow = "hidden";
@@ -236,7 +132,7 @@ export default function Blog() {
               </h2>
               <p className="text-[#1f2a1c]/70 text-lg mb-6">{destaque.resumo}</p>
               <div className="flex items-center gap-5 text-sm text-[#1f2a1c]/60 mb-8">
-                <span>{destaque.data}</span>
+                <span>{formatarData(destaque.created_at)}</span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5" /> {destaque.leitura}
                 </span>
@@ -284,7 +180,7 @@ export default function Blog() {
                 <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[#3d5a2a] mb-3">
                   <span>{post.categoria}</span>
                   <span className="w-6 h-px bg-[#3d5a2a]/50"></span>
-                  <span className="text-[#1f2a1c]/60">{post.data}</span>
+                  <span className="text-[#1f2a1c]/60">{formatarData(post.created_at)}</span>
                 </div>
                 <h4 className="font-serif text-xl leading-snug mb-3 group-hover:text-[#3d5a2a] transition">
                   {post.titulo}
@@ -340,7 +236,7 @@ export default function Blog() {
               <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[#3d5a2a] mb-5">
                 <span>{postAtivo.categoria}</span>
                 <span className="w-8 h-px bg-[#3d5a2a]"></span>
-                <span className="text-[#1f2a1c]/60">{postAtivo.data}</span>
+                <span className="text-[#1f2a1c]/60">{formatarData(postAtivo.created_at)}</span>
               </div>
 
               <h2
