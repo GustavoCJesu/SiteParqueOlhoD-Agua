@@ -1,6 +1,19 @@
+import type { Metadata } from "next"
 import Image from 'next/image'
-
 import style from './galery.module.css'
+
+export const metadata: Metadata = {
+  title: "Galeria de Fotos",
+  description: "Veja fotos das cachoeiras, trilhas, fauna e atividades do Parque Olho D'Água em Andradas, MG. Deixe as imagens te convencer a fazer a próxima visita.",
+  keywords: ["fotos parque olho d'água", "galeria parque andradas", "cachoeiras fotos andradas", "natureza andradas minas gerais"],
+  alternates: { canonical: '/galery' },
+  openGraph: {
+    title: "Galeria de Fotos | Parque Olho D'Água",
+    description: "Cachoeiras, trilhas e natureza em imagens. Conheça o Parque Olho D'Água em Andradas, MG antes mesmo de chegar.",
+    url: '/galery',
+    images: [{ url: '/img/hero/heroHome.webp', width: 1200, height: 630, alt: "Galeria Parque Olho D'Água" }],
+  },
+}
 
 export default function Galeria() {
     return (

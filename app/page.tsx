@@ -1,4 +1,5 @@
 
+import type { Metadata } from "next"
 import { Aboreto } from "next/font/google"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,17 +7,57 @@ import { MoveRight } from "lucide-react";
 
 import style from './home.module.css'
 
+export const metadata: Metadata = {
+  title: "Parque Olho D'Água | Natureza e Aventura em Andradas, MG",
+  description: "Descubra o Parque Olho D'Água em Andradas/MG: cachoeiras, trilhas, quadriciclo, restaurante self-service e muito mais. O refúgio natural perfeito para toda a família.",
+  keywords: ["parque olho d'água", "andradas", "minas gerais", "parque ecológico", "cachoeiras andradas", "trilhas ecológicas", "ecoturismo sul de minas", "turismo natureza andradas"],
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: "Parque Olho D'Água | Natureza e Aventura em Andradas, MG",
+    description: "Cachoeiras, trilhas, quadriciclo e restaurante em meio à natureza de Andradas, MG. Venha viver uma experiência única.",
+    url: '/',
+    images: [{ url: '/img/hero/heroHome.webp', width: 1200, height: 630, alt: "Parque Olho D'Água" }],
+  },
+}
+
 
 const aboreto = Aboreto({
   subsets: ['latin'],
   weight: ['400'],
 })
 
-export default function Home() {
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Parque Olho D'Água",
+  "description": "Parque ecológico em Andradas, MG com cachoeiras, trilhas, quadriciclo, restaurante self-service, caiaques e pedalinhos.",
+  "url": "https://parqueolhodagua.com.br",
+  "telephone": "+5535999322462",
+  "email": "contato@parqueolhodagua.com.br",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Estrada Andradas/Pocinhos do Rio Verde, Km 3, Zona Rural",
+    "addressLocality": "Andradas",
+    "addressRegion": "MG",
+    "postalCode": "37842-899",
+    "addressCountry": "BR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/parqueecologicoolhodagua",
+    "https://www.facebook.com/share/17jDbrbBBV/"
+  ],
+  "image": "https://parqueolhodagua.com.br/img/hero/heroHome.webp",
+  "touristType": ["Família", "Aventura", "Ecoturismo"]
+}
 
+export default function Home() {
 
   return (
     <section className='text-[#525252] w-full'>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       <div className='flex flex-col md:flex-row justify-between w-full'>
 

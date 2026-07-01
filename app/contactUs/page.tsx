@@ -1,8 +1,18 @@
-"use client"
-
+import type { Metadata } from "next"
 import style from './contactUs.module.css'
 
-
+export const metadata: Metadata = {
+  title: "Contato",
+  description: "Entre em contato com o Parque Olho D'Água. Tire dúvidas, faça reservas e planeje sua visita. Estrada Andradas/Pocinhos do Rio Verde, Km 3, Andradas, MG.",
+  keywords: ["contato parque olho d'água", "reserva parque andradas", "telefone parque andradas", "endereço parque andradas mg"],
+  alternates: { canonical: '/contactUs' },
+  openGraph: {
+    title: "Contato | Parque Olho D'Água",
+    description: "Fale com o Parque Olho D'Água. Tire dúvidas, faça reservas e planeje sua visita em Andradas, MG.",
+    url: '/contactUs',
+    images: [{ url: '/img/hero/heroHome.webp', width: 1200, height: 630, alt: "Contato Parque Olho D'Água" }],
+  },
+}
 
 export default function ContactUs() {
 

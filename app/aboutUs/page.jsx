@@ -1,6 +1,18 @@
 import Image from "next/image";
-
 import style from './aboutUs.module.css'
+
+export const metadata = {
+  title: "Sobre Nós",
+  description: "Conheça a história do Parque Olho D'Água em Andradas, MG. Nascemos do amor pela natureza para oferecer lazer, aventura e contato autêntico com o meio ambiente.",
+  keywords: ["história parque olho d'água", "sobre parque andradas", "parque ecológico andradas", "sustentabilidade natureza minas gerais"],
+  alternates: { canonical: '/aboutUs' },
+  openGraph: {
+    title: "Sobre Nós | Parque Olho D'Água",
+    description: "Nascemos do amor pela natureza. Conheça a história, missão e valores do Parque Olho D'Água em Andradas, MG.",
+    url: '/aboutUs',
+    images: [{ url: '/img/hero/heroSobreNos.webp', width: 1200, height: 630, alt: "Sobre o Parque Olho D'Água" }],
+  },
+}
 
 export default function Component() {
   return (

@@ -1,7 +1,20 @@
+import type { Metadata } from "next"
 import Image from 'next/image'
 import { Aboreto } from "next/font/google"
-
 import Carousel from "@/components/Carousel/Carousel";
+
+export const metadata: Metadata = {
+  title: "Atividades e Serviços",
+  description: "Cachoeiras, trilhas, quadriciclo, restaurante self-service, caiaques e pedalinhos. Conheça todas as atrações do Parque Olho D'Água em Andradas, MG.",
+  keywords: ["atividades parque andradas", "cachoeiras andradas mg", "quadriciclo andradas", "restaurante parque andradas", "trilhas ecológicas andradas", "caiaque pedalinho andradas"],
+  alternates: { canonical: '/services' },
+  openGraph: {
+    title: "Atividades e Serviços | Parque Olho D'Água",
+    description: "Cachoeiras, trilhas, quadriciclo, restaurante self-service e muito mais. Planeje sua visita ao Parque Olho D'Água em Andradas, MG.",
+    url: '/services',
+    images: [{ url: '/img/hero/heroServicos.webp', width: 1200, height: 630, alt: "Atividades no Parque Olho D'Água" }],
+  },
+}
 
 import style from './service.module.css'
 const aboreto = Aboreto({
@@ -61,7 +74,7 @@ export default function Servico() {
     <div className='w-full relative'>
       <Image
         className='w-full h-64 sm:h-80 md:h-125 lg:h-162.5 rounded-xl brightness-65 object-cover'
-        src='/img/cachoeira/olhodaguan.webp'
+        src='/img/cachoeira/OlhoDagua.webp'
         alt="Cachoeira Olho D'água"
         height={5000}
         width={5000}
