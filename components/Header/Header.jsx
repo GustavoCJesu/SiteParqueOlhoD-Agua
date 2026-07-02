@@ -24,7 +24,9 @@ export default function Header() {
       <div className='flex md:hidden justify-between items-center w-full'>
         <Image src="/img/logo/LogoNova.png" alt="Logo parque olho d'agua" width={150} height={100} />
         <button
-          onPointerDown={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={menuOpen}
           className='text-3xl p-2 text-black cursor-pointer select-none'
         >
           {menuOpen ? '✕' : '☰'}
