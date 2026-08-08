@@ -16,7 +16,7 @@ export default function Header() {
           <Image src="/img/logo/LogoNova.png"  alt="Logo parque olho d'agua" width={200} height={100} />
         </li>
         <li><Link href="/blog">Blog</Link></li>
-        <li><Link href='/contactUs'>Contatenos</Link></li>
+        <li><Link href='/contactUs'>Contate-nos</Link></li>
         <li><Link href='/aboutUs'>Sobre Nós</Link></li>
       </ul>
 
