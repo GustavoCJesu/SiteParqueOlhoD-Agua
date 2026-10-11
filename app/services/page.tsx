@@ -39,7 +39,6 @@ export default function Servico() {
                     <p className='text-base md:text-xl lg:text-2xl text-center mt-2'>
                         Sabados R$54,90 <br/>
                         Domingos R$64,90
-                        
                     </p>
                 </div>
 
