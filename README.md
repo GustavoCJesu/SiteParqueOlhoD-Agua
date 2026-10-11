@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Parque Ecológico Olho D'Água — Site Institucional
 
-## Getting Started
+Site institucional **fullstack** para um parque ecológico em Andradas, MG, com blog integrado e painel administrativo próprio. Desenvolvido com foco em performance, SEO e uma boa experiência tanto para visitantes quanto para a equipe que mantém o conteúdo.
 
-First, run the development server:
+> 🚧 Projeto em desenvolvimento.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Funcionalidades
+
+- **Páginas institucionais**: Home, Sobre Nós, Serviços e Galeria de fotos.
+- **Blog integrado** com listagem e página de posts.
+- **Painel administrativo** protegido por login, para criar, editar e excluir posts do blog (CRUD completo).
+- **Autenticação** própria via cookie assinado (HMAC) e middleware de proteção de rotas `/admin`.
+- **Upload de imagens** para os posts do blog.
+- **Formulário de contato** com envio de e-mail via SMTP.
+- **SEO** com `sitemap.ts` e `robots.ts` gerados dinamicamente pelo Next.js.
+- **Animações** de entrada e transições suaves com Anime.js.
+- Layout **responsivo**, construído com Tailwind CSS e DaisyUI.
+
+## 🛠️ Tecnologias
+
+**Frontend**
+- [Next.js 16](https://nextjs.org/) (App Router)
+- [React 19](https://react.dev/)
+- TypeScript / JSX
+- [Tailwind CSS 4](https://tailwindcss.com/) + [DaisyUI](https://daisyui.com/)
+- [Anime.js](https://animejs.com/) — animações
+- [Lucide React](https://lucide.dev/) — ícones
+
+**Backend**
+- Next.js API Routes (Route Handlers)
+- [Supabase](https://supabase.com/) — banco de dados (PostgreSQL) e persistência dos posts
+- [Nodemailer](https://nodemailer.com/) — envio de e-mails do formulário de contato
+- Middleware de autenticação com HMAC (Web Crypto API)
+
+## 📁 Estrutura do projeto
+
+```
+app/
+├── page.tsx                 # Home
+├── aboutUs/                 # Sobre nós
+├── services/                 # Serviços
+├── galery/                   # Galeria de fotos
+├── blog/                     # Listagem e posts do blog
+├── contactUs/                 # Contato
+├── login/                    # Login do painel admin
+├── admin/blog/                # Painel de administração do blog
+└── api/
+    ├── admin/posts/           # CRUD de posts (protegido)
+    ├── auth/login|logout/      # Autenticação
+    └── send-email/             # Envio do formulário de contato
+
+components/                  # Header, Footer, Carousel, Formulário, Upload de imagem
+lib/supabase.ts              # Cliente do Supabase
+middleware.ts                # Proteção das rotas /admin
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Como rodar localmente
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Pré-requisitos: [Node.js](https://nodejs.org/) 18+ e uma conta [Supabase](https://supabase.com/).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Clonar o repositório
+git clone https://github.com/GustavoCJesu/SiteParqueOlhoD-Agua.git
+cd SiteParqueOlhoD-Agua
 
-## Learn More
+# Instalar dependências
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# Criar o arquivo de variáveis de ambiente
+cp .env.example .env.local   # ou crie manualmente, veja abaixo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Rodar em desenvolvimento
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Acesse [http://localhost:3000](http://localhost:3000).
 
-## Deploy on Vercel
+### Variáveis de ambiente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Crie um arquivo `.env.local` na raiz do projeto com:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+# Supabase
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+
+# Envio de e-mail (formulário de contato)
+SMTP_USER=
+SMTP_PASS=
+
+# Autenticação do painel administrativo
+ADMIN_USER=
+ADMIN_PASSWORD=
+ADMIN_SECRET=
+```
+
+## 📦 Scripts disponíveis
+
+| Comando         | Descrição                          |
+|-----------------|--------------------------------------|
+| `npm run dev`   | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera o build de produção             |
+| `npm run start` | Inicia o servidor em modo produção   |
+| `npm run lint`  | Executa o ESLint                     |
+
+## 👤 Autor
+
+**Gustavo Jesuino**
+[LinkedIn](https://linkedin.com/in/gustavojesuino0411) · [GitHub](https://github.com/GustavoCJesu)
