@@ -38,7 +38,7 @@ export default function Formulario() {
     }
 
     return (
-        <section className="flex text-[#525252] bg-[#F2F2F2] p-5 md:p-10 flex-wrap">
+        <section id="contato" className="flex text-[#525252] bg-[#F2F2F2] p-5 md:p-10 flex-wrap scroll-mt-40">
 
             {/* Coluna de contato */}
             <div className="w-full md:w-1/2 flex flex-col items-center mb-10 md:mb-0 p-2">
@@ -83,8 +83,13 @@ export default function Formulario() {
                             <div>
                                 <h1 className="text-xl md:text-[30px]">Email</h1>
                                 <p className="text-sm md:text-base break-all">
-                                    contato@parqueolhodagua.com.br <br />
-                                    eventos@parqueolhodagua.com.br
+                                    <a href='mailto:contato@parqueolhodagua.com.br' className='transition-colors hover:text-[#028F92] hover:underline' onClick={() => window.gtag_report_conversion?.()}>
+                                        contato@parqueolhodagua.com.br
+                                    </a>
+                                    <br />
+                                    <a href='mailto:eventos@parqueolhodagua.com.br' className='transition-colors hover:text-[#028F92] hover:underline' onClick={() => window.gtag_report_conversion?.()}>
+                                        eventos@parqueolhodagua.com.br
+                                    </a>
                                 </p>
                             </div>
                         </div>

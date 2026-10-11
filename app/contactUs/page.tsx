@@ -21,9 +21,9 @@ export default function ContactUs() {
     return (
         <section>
             <div className={`w-full flex flex-col items-center justify-center gap-4 md:gap-5 px-4 sm:px-10 md:px-20 py-12 md:py-16 ${style.heroContactUs} text-white bg-[linear-gradient(106deg,#14494A_0%,#028F92_100%)] shadow-[0_0_30px_-5px_#028F92]`}>
-                <p className='border-2 p-2 md:p-3 rounded text-base md:text-xl lg:text-2xl'>
+                <a href='#contato' className='border-2 p-2 md:p-3 rounded text-base md:text-xl lg:text-2xl transition duration-300 hover:bg-white hover:text-[#14494A]'>
                     FALE CONOSCO
-                </p>
+                </a>
                 <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-center'>
                     Como podemos te ajudar?
                 </h1>

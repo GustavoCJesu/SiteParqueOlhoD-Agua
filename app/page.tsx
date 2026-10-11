@@ -1,6 +1,6 @@
 
 import type { Metadata } from "next"
-import { Aboreto } from "next/font/google"
+import { aboreto } from "./fonts"
 import Image from 'next/image'
 import Link from 'next/link'
 import { MoveRight } from "lucide-react";
@@ -21,10 +21,6 @@ export const metadata: Metadata = {
 }
 
 
-const aboreto = Aboreto({
-  subsets: ['latin'],
-  weight: ['400'],
-})
 
 const jsonLd = {
   "@context": "https://schema.org",

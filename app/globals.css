@@ -6,6 +6,14 @@
   --foreground: #171717;
 }
 
+/* O Tailwind v4 não aplica mais cursor: pointer nos botões por padrão */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

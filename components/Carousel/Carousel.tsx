@@ -208,7 +208,7 @@ export default function Carousel() {
             key={i}
             onClick={() => go(i)}
             aria-label={`Ir para página ${i + 1}`}
-            className={`rounded-full transition-all ${i === current ? "w-2 h-2 bg-gray-800 scale-110" : "w-2 h-2 bg-gray-300"
+            className={`rounded-full transition-all ${i === current ? "w-2 h-2 bg-gray-800 scale-110" : "w-2 h-2 bg-gray-300 hover:bg-gray-500"
               }`}
           />
         ))}
