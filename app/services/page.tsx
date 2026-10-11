@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from 'next/image'
-import { Aboreto } from "next/font/google"
+import { aboreto } from "../fonts"
 import Carousel from "@/components/Carousel/Carousel";
 
 export const metadata: Metadata = {
@@ -17,10 +17,6 @@ export const metadata: Metadata = {
 }
 
 import style from './service.module.css'
-const aboreto = Aboreto({
-    subsets: ['latin'],
-    weight: ['400'],
-})
 
 export default function Servico() {
     return (
