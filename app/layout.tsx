@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Roboto } from "next/font/google"
+import Script from "next/script";
 import ClientLayout from '../components/ClientLayout'
 
 const geistSans = Geist({
@@ -53,6 +54,35 @@ export default function RootLayout({
     >
       <body className={`${roboto.className} w-full min-h-screen`}>
         <ClientLayout>{children}</ClientLayout>
+
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18073402606"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18073402606');
+
+            function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                'send_to': 'AW-18073402606/UJQGCMjh05QdEO75iKpD',
+                'value': 1.0,
+                'currency': 'BRL',
+                'event_callback': callback
+              });
+              return false;
+            }
+          `}
+        </Script>
       </body>
     </html>
   );

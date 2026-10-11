@@ -69,7 +69,7 @@ export default function Home() {
           <p className='w-full md:w-full text-lg md:text-2xl text-left'>
             Um espaço preparado para você desacelerar, se reconectar e viver momentos especiais em meio à natureza de Andradas.
           </p>
-          <a className={`${style.btnMaps} md:text-2xl self-start text-2`}>Como Chegar</a>
+          <a href="https://www.google.com/maps?cid=12143616808773543875" target="_blank" rel="noopener noreferrer" className={`${style.btnMaps} md:text-2xl self-start text-2`}>Como Chegar</a>
           <p className='text-lg md:text-2xl mt-1 md:mt-3'>
             Entrada <strong className='text-green-800'>Gratuita</strong>
           </p>
@@ -141,7 +141,7 @@ export default function Home() {
 
           {/* Botão — largura total no mobile, auto no desktop */}
           <div className={`${style.aboutHover} ${aboreto.className} self-start w-full md:w-auto`}>
-            <Link href='#' className="flex justify-center text-7 md:text-1000 border w-full md:px-20 py-5 rounded relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[#028F92] before:scale-x-0 before:origin-left hover:before:scale-x-100 before:transition before:duration-300 hover:text-white transition duration-500">
+            <Link href='/aboutUs' className="flex justify-center text-7 md:text-1000 border w-full md:px-20 py-5 rounded relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[#028F92] before:scale-x-0 before:origin-left hover:before:scale-x-100 before:transition before:duration-300 hover:text-white transition duration-500">
               <p className="flex items-center z-10">Conheça a historia completa <MoveRight /></p>
             </Link>
           </div>
@@ -150,7 +150,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col sm:flex-row flex-wrap mx-auto justify-around gap-8 my-10 md:my-20 px-4">
 
-        <Link href='#' className="h-110">
+        <Link href='/services' className="h-110">
           <div className={`h-full relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
             <Image className={`${style.imgCard} w-full sm:w-75 h-full`} src='/img/cards/quadriciclo.png' alt='' width={300} height={400} />
             <div className={`${style.txtActivity}`}>
@@ -160,7 +160,7 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href='#' className="h-110">
+        <Link href='/services' className="h-110">
           <div className={`h-full relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
             <Image className={`${style.imgCard} w-full sm:w-75 h-full`} src='/img/cards/caiaque.webp' alt='' width={300} height={400} />
             <div className={`${style.txtActivity}`}>
@@ -170,7 +170,7 @@ export default function Home() {
           </div>
         </Link>
 
-        <Link href='#' className="h-110">
+        <Link href='/services' className="h-110">
           <div className={`h-full relative flex justify-center flex-col ${style.card} w-full sm:w-auto`}>
             <Image className={`${style.imgCard} w-full sm:w-75 h-full`} src='/img/cards/pedalinho.webp' alt='' width={300} height={400} />
             <div className={`${style.txtActivity}`}>

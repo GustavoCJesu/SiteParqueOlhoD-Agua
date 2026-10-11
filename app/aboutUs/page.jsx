@@ -157,7 +157,7 @@ export default function Component() {
         <p className="text-lg sm:text-xl md:text-2xl text-center my-6 md:my-10 max-w-2xl px-4">
           Agende sua visita e venha viver essa experiência única em contato com a natureza.
         </p>
-        <a href="#" className={`${style.btnEntrarEmContato} text-center border-2 border-[#b6b6b6] py-4 px-12 md:py-5 md:px-20 rounded`}>
+        <a href="/contactUs" className={`${style.btnEntrarEmContato} text-center border-2 border-[#b6b6b6] py-4 px-12 md:py-5 md:px-20 rounded`}>
           ENTRE EM CONTATO
         </a>
       </div>
