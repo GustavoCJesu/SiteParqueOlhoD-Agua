@@ -99,7 +99,8 @@ ADMIN_SECRET=
 | Comando         | Descrição                          |
 |-----------------|--------------------------------------|
 | `npm run dev`   | Inicia o servidor de desenvolvimento |
-| `npm run build` | Gera o build de produção             |
+| `npm run build` | Gera o build de produção (Webpack, usado no deploy) |
+| `npm run build:local` | Gera o build com Turbopack (use localmente) |
 | `npm run start` | Inicia o servidor em modo produção   |
 | `npm run lint`  | Executa o ESLint                     |
 
