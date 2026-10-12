@@ -9,7 +9,7 @@ Site institucional **fullstack** para um parque ecológico em Andradas, MG, com 
 - **Páginas institucionais**: Home, Sobre Nós, Serviços e Galeria de fotos.
 - **Blog integrado** com listagem e página de posts.
 - **Painel administrativo** protegido por login, para criar, editar e excluir posts do blog (CRUD completo).
-- **Autenticação** própria via cookie assinado (HMAC) e middleware de proteção de rotas `/admin`.
+- **Autenticação** própria via cookie assinado (HMAC) e proxy de proteção de rotas `/admin`.
 - **Upload de imagens** para os posts do blog.
 - **Formulário de contato** com envio de e-mail via SMTP.
 - **SEO** com `sitemap.ts` e `robots.ts` gerados dinamicamente pelo Next.js.
@@ -30,7 +30,7 @@ Site institucional **fullstack** para um parque ecológico em Andradas, MG, com 
 - Next.js API Routes (Route Handlers)
 - [Supabase](https://supabase.com/) — banco de dados (PostgreSQL) e persistência dos posts
 - [Nodemailer](https://nodemailer.com/) — envio de e-mails do formulário de contato
-- Middleware de autenticação com HMAC (Web Crypto API)
+- Proxy de autenticação com HMAC (Web Crypto API)
 
 ## 📁 Estrutura do projeto
 
@@ -51,7 +51,7 @@ app/
 
 components/                  # Header, Footer, Carousel, Formulário, Upload de imagem
 lib/supabase.ts              # Cliente do Supabase
-middleware.ts                # Proteção das rotas /admin
+proxy.ts                     # Proteção das rotas /admin
 ```
 
 ## 🚀 Como rodar localmente

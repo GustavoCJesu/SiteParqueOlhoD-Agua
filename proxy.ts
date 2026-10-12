@@ -25,7 +25,7 @@ async function isValidToken(token: string): Promise<boolean> {
   return token === expected
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const token = request.cookies.get('parque_auth')?.value
   const authenticated = token ? await isValidToken(token) : false
